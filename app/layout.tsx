@@ -92,6 +92,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const adsensePublisherId = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID;
+  const googleTagId = process.env.NEXT_PUBLIC_GOOGLE_TAG_ID;
 
   // Global Brand & WebSite Structured JSON-LD for Google Rich Results
   const globalSchema = {
@@ -156,6 +157,28 @@ export default function RootLayout({
             crossOrigin="anonymous"
             strategy="afterInteractive"
           />
+        )}
+        {googleTagId && (
+          <>
+            <Script
+              strategy="afterInteractive"
+              src={`https://www.googletagmanager.com/gtag/js?id=${googleTagId}`}
+            />
+            <Script
+              id="google-tag-init"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${googleTagId}', {
+                    page_path: window.location.pathname,
+                  });
+                `,
+              }}
+            />
+          </>
         )}
       </head>
       <body className="min-h-screen flex flex-col bg-[#FDFBF7] text-[#2C221E] antialiased">
