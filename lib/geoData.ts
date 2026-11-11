@@ -532,6 +532,254 @@ export const PROGRAMMATIC_PAGES: Record<string, ProgrammaticPageConfig> = {
       'Day rate pricing (typically 8x billable hourly rate) reduces micro-time tracking overhead.'
     ]
   },
+
+  // HIGH-VOLUME SEARCH INTENT PROGRAMMATIC PAGES
+  'paypal-fee-calculator/friends-and-family-vs-goods-and-services': {
+    calculatorSlug: 'paypal-fee-calculator',
+    subSlug: 'friends-and-family-vs-goods-and-services',
+    title: 'PayPal Friends & Family vs Goods & Services Fee Calculator',
+    metaTitle: 'PayPal Friends and Family vs Goods and Services Fees (2026) | Kazcut',
+    metaDescription: 'Compare PayPal Friends and Family (0% domestic bank) vs Goods and Services (2.99% + $0.49). Calculate exact deductions and buyer protection fees.',
+    h1: 'PayPal Fees: Friends & Family vs. Goods & Services',
+    description: 'Detailed comparison of personal Friends & Family transfers versus commercial Goods & Services transactions. Calculate fees, purchase protection costs, and merchant deductions.',
+    defaultCurrency: 'USD',
+    defaultInputs: {
+      amount: 100,
+      mode: 'receive',
+      rateType: 'standard',
+      currency: 'USD',
+    },
+    faqs: [
+      {
+        question: 'Are PayPal Friends and Family payments really free?',
+        answer: 'Yes, domestic Friends & Family payments are free when funded via PayPal balance or linked bank account. If funded with a credit card, PayPal charges a 2.90% fee to the sender.'
+      },
+      {
+        question: 'What is the fee for PayPal Goods and Services in 2026?',
+        answer: 'The seller pays 2.99% + $0.49 USD per domestic transaction. Goods & Services includes PayPal Purchase Protection for both buyer and seller.'
+      },
+      {
+        question: 'Can I use Friends and Family for commercial sales?',
+        answer: 'No. Using Friends & Family for commercial sales violates PayPal Acceptable Use Policy and voids all seller protection and dispute resolution mechanisms.'
+      }
+    ],
+    marketNotes: [
+      'Friends & Family: 0% fee with bank/balance, no purchase protection.',
+      'Goods & Services: 2.99% + $0.49 USD, full PayPal Purchase & Seller Protection.',
+      'Credit card funding fee: 2.90% charged to sender for personal transfers.'
+    ]
+  },
+
+  'paypal-fee-calculator/invoicing-rates': {
+    calculatorSlug: 'paypal-fee-calculator',
+    subSlug: 'invoicing-rates',
+    title: 'PayPal Invoice Fee Calculator',
+    metaTitle: 'PayPal Invoicing Fee Calculator (2026 Rates) | Kazcut',
+    metaDescription: 'Calculate PayPal invoice processing fees (3.49% + $0.49) and compute the exact invoice total required to net your target payout.',
+    h1: 'PayPal Invoice Fee Calculator (3.49% + $0.49)',
+    description: 'Calculate transaction deductions on official PayPal invoices and payment requests. Invert the calculation to bill clients the exact total required to net 100% of your earnings.',
+    defaultCurrency: 'USD',
+    defaultInputs: {
+      amount: 250,
+      mode: 'receive',
+      rateType: 'invoicing',
+      currency: 'USD',
+    },
+    faqs: [
+      {
+        question: 'Why are PayPal invoice fees higher than checkout fees?',
+        answer: 'PayPal Invoicing carries a rate of 3.49% + $0.49 USD because PayPal provides automated invoicing, payment reminders, tracking, and customer receipt portals.'
+      },
+      {
+        question: 'How do I pass PayPal invoice fees to a client legally?',
+        answer: 'Many businesses adjust their line items or consult contract terms. Using reverse mode, a $1,000 target payout requires an invoice total of $1,036.77.'
+      }
+    ],
+    marketNotes: [
+      'Invoicing rate: 3.49% + $0.49 USD per paid invoice.',
+      'To net $500, invoice $518.59.',
+      'To net $1,000, invoice $1,036.77.'
+    ]
+  },
+
+  'stripe-fee-calculator/international-cards': {
+    calculatorSlug: 'stripe-fee-calculator',
+    subSlug: 'international-cards',
+    title: 'Stripe International Card Fee Calculator',
+    metaTitle: 'Stripe International Card Processing Fee Calculator | Kazcut',
+    metaDescription: 'Calculate Stripe cross-border card fees (+1.5%) and currency conversion (+1.0%). Determine true net payouts on global credit card payments.',
+    h1: 'Stripe International Card Fee Calculator',
+    description: 'Calculate credit card interchange surcharges when accepting payments from buyers outside your account origin country, including the 1.5% international card fee and 1% conversion fee.',
+    defaultCurrency: 'USD',
+    defaultInputs: {
+      amount: 150,
+      mode: 'receive',
+      isInternational: true,
+      needsCurrencyConversion: false,
+      currency: 'USD',
+    },
+    faqs: [
+      {
+        question: 'What is Stripe cross-border surcharge for international cards?',
+        answer: 'Stripe adds +1.50% to its base rate (2.9% + $0.30), resulting in an effective fee of 4.40% + $0.30 USD for international cards.'
+      },
+      {
+        question: 'When does the Stripe 1% currency conversion fee apply?',
+        answer: 'If the customer card currency differs from your bank account payout currency, Stripe applies an additional 1.00% fee to perform foreign exchange conversion.'
+      }
+    ],
+    marketNotes: [
+      'Base domestic fee: 2.9% + $0.30.',
+      'International card markup: +1.50% (total 4.40% + $0.30).',
+      'Cross-currency conversion markup: +1.00% (total 5.40% + $0.30).'
+    ]
+  },
+
+  'stripe-fee-calculator/dispute-and-chargeback-fees': {
+    calculatorSlug: 'stripe-fee-calculator',
+    subSlug: 'dispute-and-chargeback-fees',
+    title: 'Stripe Dispute & Chargeback Fee Calculator',
+    metaTitle: 'Stripe Chargeback & Dispute Cost Calculator | Kazcut',
+    metaDescription: 'Calculate Stripe dispute losses ($15 fee per dispute), chargeback risk percentages, and impact on monthly merchant revenue.',
+    h1: 'Stripe Chargeback & Dispute Cost Calculator',
+    description: 'Model your exposure to customer card disputes and chargebacks. Analyzes the standard $15.00 dispute administrative fee across monthly payment volumes.',
+    defaultCurrency: 'USD',
+    defaultInputs: {
+      amount: 100,
+      mode: 'send',
+      isInternational: false,
+      needsCurrencyConversion: false,
+      currency: 'USD',
+      estimatedMonthlyVolume: 25000,
+      estimatedDisputeRate: 0.35,
+    },
+    faqs: [
+      {
+        question: 'How much does Stripe charge for a customer dispute?',
+        answer: 'Stripe assesses a $15.00 dispute fee when a cardholder files a formal chargeback with their issuing bank.'
+      },
+      {
+        question: 'Do you get the $15 Stripe dispute fee back if you win?',
+        answer: 'Yes. If the customer card issuer rules in your favor after submitting evidence, Stripe refunds the $15 dispute fee.'
+      }
+    ],
+    marketNotes: [
+      'Standard dispute fee: $15.00 USD per contested transaction.',
+      'Visa and Mastercard monitor merchant dispute ratios; keep dispute frequency below 0.75% to avoid penalties.'
+    ]
+  },
+
+  'etsy-fee-calculator/offsite-ads-fee': {
+    calculatorSlug: 'etsy-fee-calculator',
+    subSlug: 'offsite-ads-fee',
+    title: 'Etsy Offsite Ads Fee Calculator',
+    metaTitle: 'Etsy Offsite Ads Fee Calculator (12% vs 15%) | Kazcut',
+    metaDescription: 'Calculate the profit impact of Etsy Offsite Ads (12% mandatory vs 15% optional). See exact net profit and profit margin when ads attribute a sale.',
+    h1: 'Etsy Offsite Ads Profit & Fee Calculator',
+    description: 'Analyze net seller margins when an Etsy sale is attributed to an external Offsite Ad on Google, Facebook, Instagram, Pinterest, or Bing.',
+    defaultCurrency: 'USD',
+    defaultInputs: {
+      salePrice: 50,
+      shippingCharged: 5,
+      itemCost: 15,
+      shippingCost: 5,
+      quantity: 1,
+      offsiteAds: 'standard_15',
+      paymentProcessingPercent: 3.0,
+      paymentProcessingFixed: 0.25,
+      regulatoryOperatingFeePercent: 0,
+      currency: 'USD',
+    },
+    faqs: [
+      {
+        question: 'Who is required to pay Etsy 12% Offsite Ads fee?',
+        answer: 'Shops that have generated over $10,000 USD in revenue over any trailing 12-month period are required to participate at a discounted 12% fee for life.'
+      },
+      {
+        question: 'How is the Etsy Offsite Ads fee calculated?',
+        answer: 'The fee is 12% or 15% of the total order value, which includes both the item price and the shipping fee charged to the buyer.'
+      }
+    ],
+    marketNotes: [
+      'Standard tier: 15% fee on attributed orders (optional for shops under $10k/yr).',
+      'High volume tier: 12% fee on attributed orders (mandatory for shops over $10k/yr).',
+      'Combines with Etsy 6.5% transaction fee and payment processing.'
+    ]
+  },
+
+  'amazon-fba-calculator/storage-fees': {
+    calculatorSlug: 'amazon-fba-calculator',
+    subSlug: 'storage-fees',
+    title: 'Amazon FBA Monthly Storage Fee Calculator',
+    metaTitle: 'Amazon FBA Storage Fee Calculator (Standard vs Peak Q4) | Kazcut',
+    metaDescription: 'Calculate Amazon FBA monthly inventory storage costs per unit and see the impact on net product profit margin during Q4 peak months.',
+    h1: 'Amazon FBA Inventory Storage Fee Calculator',
+    description: 'Calculate standard and peak holiday Q4 Amazon FBA storage charges per unit. Evaluates monthly inventory carrying costs against sell-through velocity.',
+    defaultCurrency: 'USD',
+    defaultInputs: {
+      itemPrice: 34.99,
+      cogs: 8.00,
+      inboundShipping: 1.50,
+      category: 'Home & Kitchen',
+      referralRatePercent: 15,
+      fbaTier: 'large_standard_under_1lb',
+      monthlyStorageMonths: 3,
+      estimatedStoragePerUnit: 0.45,
+      salesVelocityPerMonth: 250,
+      currency: 'USD',
+    },
+    faqs: [
+      {
+        question: 'What are Amazon FBA monthly storage rates?',
+        answer: 'For standard size items, Amazon charges approximately $0.87 per cubic foot from January to September, increasing to $2.40 per cubic foot during peak holiday months (October to December).'
+      },
+      {
+        question: 'How do aged inventory surcharges work on Amazon?',
+        answer: 'Amazon charges aged inventory surcharges on items stored in fulfillment centers for more than 181 days, escalating significantly after 365 days.'
+      }
+    ],
+    marketNotes: [
+      'Off-peak standard storage: ~$0.87/cubic foot (Jan–Sep).',
+      'Peak holiday storage: ~$2.40/cubic foot (Oct–Dec).',
+      'Higher inventory turns directly preserve net margin.'
+    ]
+  },
+
+  'shopify-profit-calculator/break-even-cac': {
+    calculatorSlug: 'shopify-profit-calculator',
+    subSlug: 'break-even-cac',
+    title: 'Shopify Break-Even CAC Calculator',
+    metaTitle: 'Shopify Break-Even CAC Calculator (Customer Acquisition Cost) | Kazcut',
+    metaDescription: 'Calculate your exact Break-Even Customer Acquisition Cost (CAC) for Shopify ads. Determine the maximum ad spend allowed before losing money per order.',
+    h1: 'Shopify Break-Even CAC (Customer Acquisition Cost) Calculator',
+    description: 'Determine the exact advertising acquisition cost threshold for Facebook, TikTok, and Google Ads campaigns on your Shopify store before order profitability turns negative.',
+    defaultCurrency: 'USD',
+    defaultInputs: {
+      retailPrice: 65.00,
+      cogs: 18.00,
+      shippingCharged: 0,
+      shippingCost: 6.00,
+      adSpendPerOrder: 25.00,
+      otherCostsPerOrder: 3.00,
+      planType: 'shopify',
+      estimatedMonthlyOrders: 600,
+      currency: 'USD',
+    },
+    faqs: [
+      {
+        question: 'What is Break-Even CAC in e-commerce?',
+        answer: 'Break-Even CAC is the maximum amount you can spend to acquire a single customer order before the transaction generates a net loss: Gross Order Revenue minus (COGS + Shipping + Gateway Fees + Packaging).'
+      },
+      {
+        question: 'How do gateway fees impact Break-Even CAC on Shopify?',
+        answer: 'Shopify Payments fees (2.5% to 2.9% + $0.30) reduce your gross margin dollar-for-dollar, lowering the maximum ad spend you can afford per conversion.'
+      }
+    ],
+    marketNotes: [
+      'Formula: Break-Even CAC = Order Gross - COGS - Shipping - Gateway Fee - Packaging.',
+      'Target an actual ad spend CAC at least 30-40% below break-even to generate sustainable net operating profit.'
+    ]
+  },
 };
 
 export const ALL_CALCULATORS = [

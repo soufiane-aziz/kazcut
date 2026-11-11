@@ -95,6 +95,31 @@ export default async function ProgrammaticPage({ params }: PageProps) {
     })),
   };
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: getSiteUrl(),
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: calculator.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase()),
+        item: `${getSiteUrl()}/${calculator}`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: config.title,
+        item: `${getSiteUrl()}/${calculator}/${slug}`,
+      },
+    ],
+  };
+
   // Render the appropriate calculator engine
   const renderCalculatorEngine = () => {
     switch (calculator) {
@@ -171,6 +196,10 @@ export default async function ProgrammaticPage({ params }: PageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
       {/* Top Banner AdSense Slot */}
