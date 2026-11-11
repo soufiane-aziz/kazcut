@@ -10,8 +10,8 @@ interface GuideContextType {
 
 const GuideContext = createContext<GuideContextType>({
   isOpen: false,
-  openGuide: () => {},
-  closeGuide: () => {},
+  openGuide: () => { },
+  closeGuide: () => { },
 });
 
 export function GuideProvider({ children }: { children: React.ReactNode }) {

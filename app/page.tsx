@@ -107,8 +107,8 @@ export default function HomePage() {
       </ScrollReveal>
 
       {/* Core Tools Directory Grid */}
-      <ScrollReveal delayMs={100}>
-        <section id="tools" className="mt-8">
+      <section id="tools" className="mt-8">
+        <ScrollReveal>
           <div className="border-b border-[#EFEAD8] pb-4">
             <h2 className="text-sm font-semibold uppercase tracking-wider text-[#2C221E]">
               Financial Calculator Directory
@@ -117,13 +117,18 @@ export default function HomePage() {
               Select a specialized engine below to calculate fee deductions, profit margins, and required invoice totals.
             </p>
           </div>
+        </ScrollReveal>
 
-          <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {ALL_CALCULATORS.map((tool, idx) => (
+        <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {ALL_CALCULATORS.map((tool, idx) => (
+            <ScrollReveal
+              key={tool.slug}
+              delayMs={idx * 100}
+              className="h-full"
+            >
               <Link
-                key={tool.slug}
                 href={`/${tool.slug}`}
-                className="group flex flex-col justify-between rounded-xl border border-[#EFEAD8] bg-white p-6 shadow-2xs transition hover:border-[#C58842] hover:shadow-xs"
+                className="group flex h-full flex-col justify-between rounded-xl border border-[#EFEAD8] bg-white p-6 shadow-2xs transition-all duration-300 hover:-translate-y-1 hover:border-[#C58842] hover:shadow-xs"
               >
                 <div>
                   <div className="flex items-center justify-between">
@@ -145,10 +150,10 @@ export default function HomePage() {
                   <span className="font-mono text-[11px] text-[#9B8C83]">2026 Rates</span>
                 </div>
               </Link>
-            ))}
-          </div>
-        </section>
-      </ScrollReveal>
+            </ScrollReveal>
+          ))}
+        </div>
+      </section>
 
       {/* Platform Fee Comparison Matrix */}
       <ScrollReveal delayMs={150}>

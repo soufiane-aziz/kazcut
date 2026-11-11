@@ -98,9 +98,8 @@ export default function GuideModal() {
           {GUIDE_STEPS.map((_, idx) => (
             <div
               key={idx}
-              className={`h-1 flex-1 rounded-full transition-all duration-300 ${
-                idx <= currentStep ? 'bg-[#C58842]' : 'bg-[#EFEAD8]'
-              }`}
+              className={`h-1 flex-1 rounded-full transition-all duration-300 ${idx <= currentStep ? 'bg-[#C58842]' : 'bg-[#EFEAD8]'
+                }`}
             />
           ))}
         </div>
