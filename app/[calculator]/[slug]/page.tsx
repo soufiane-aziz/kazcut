@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { PROGRAMMATIC_PAGES } from '@/lib/geoData';
+import { getSiteUrl } from '@/lib/siteUrl';
 import AdSenseSlot from '@/components/AdSenseSlot';
 import PaypalCalculator from '@/components/calculators/PaypalCalculator';
 import StripeCalculator from '@/components/calculators/StripeCalculator';
@@ -39,16 +40,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const baseUrl = getSiteUrl();
+
   return {
     title: config.metaTitle,
     description: config.metaDescription,
     alternates: {
-      canonical: `https://kazcut.vercel.app/${calculator}/${slug}`,
+      canonical: `${baseUrl}/${calculator}/${slug}`,
     },
     openGraph: {
       title: config.metaTitle,
       description: config.metaDescription,
-      url: `https://kazcut.vercel.app/${calculator}/${slug}`,
+      url: `${baseUrl}/${calculator}/${slug}`,
       siteName: 'Kazcut',
     },
     twitter: {

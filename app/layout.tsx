@@ -3,9 +3,12 @@ import Script from 'next/script';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { getSiteUrl } from '@/lib/siteUrl';
+
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://kazcut.vercel.app'),
+  metadataBase: new URL(siteUrl),
   title: {
     default: 'Kazcut | E-Commerce & Freelancer Profit Fee Calculator',
     template: '%s | Kazcut',
@@ -38,12 +41,12 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: 'https://kazcut.vercel.app',
+    canonical: siteUrl,
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://kazcut.vercel.app',
+    url: siteUrl,
     siteName: 'Kazcut',
     title: 'Kazcut | E-Commerce & Freelancer Profit Fee Calculator',
     description:

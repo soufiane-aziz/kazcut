@@ -1,15 +1,15 @@
 import { MetadataRoute } from 'next';
 import { ALL_CALCULATORS, PROGRAMMATIC_PAGES } from '@/lib/geoData';
-
-const BASE_URL = 'https://kazcut.vercel.app';
+import { getSiteUrl } from '@/lib/siteUrl';
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = getSiteUrl();
   const currentDate = new Date().toISOString();
 
   // Root Homepage
   const routes: MetadataRoute.Sitemap = [
     {
-      url: BASE_URL,
+      url: baseUrl,
       lastModified: currentDate,
       changeFrequency: 'daily',
       priority: 1.0,
@@ -19,7 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Core Calculator Root Pages
   ALL_CALCULATORS.forEach((calc) => {
     routes.push({
-      url: `${BASE_URL}/${calc.slug}`,
+      url: `${baseUrl}/${calc.slug}`,
       lastModified: currentDate,
       changeFrequency: 'daily',
       priority: 0.9,
@@ -29,7 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Programmatic Dynamic Routes (Geo-SEO & Platforms)
   Object.keys(PROGRAMMATIC_PAGES).forEach((key) => {
     routes.push({
-      url: `${BASE_URL}/${key}`,
+      url: `${baseUrl}/${key}`,
       lastModified: currentDate,
       changeFrequency: 'weekly',
       priority: 0.8,

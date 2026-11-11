@@ -9,13 +9,13 @@ export const metadata: Metadata = {
   description:
     'Free Etsy profit calculator. Factor in listing fees, 6.5% transaction fees, payment processing, offsite ads, and COGS to calculate true net margin.',
   alternates: {
-    canonical: 'https://kazcut.vercel.app/etsy-fee-calculator',
+    canonical: '/etsy-fee-calculator',
   },
   openGraph: {
     title: 'Etsy Fee & Profit Calculator | Kazcut',
     description:
       'Calculate Etsy seller fees, offsite ads deductions, and net margins for handmade and digital products.',
-    url: 'https://kazcut.vercel.app/etsy-fee-calculator',
+    url: '/etsy-fee-calculator',
   },
 };
 

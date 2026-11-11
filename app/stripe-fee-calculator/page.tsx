@@ -9,13 +9,13 @@ export const metadata: Metadata = {
   description:
     'Calculate Stripe credit card processing fees, international card surcharges, currency conversion costs, and dispute risk buffers.',
   alternates: {
-    canonical: 'https://kazcut.vercel.app/stripe-fee-calculator',
+    canonical: '/stripe-fee-calculator',
   },
   openGraph: {
     title: 'Stripe Fee Calculator | Kazcut',
     description:
       'Accurate Stripe credit card fee calculator with reverse invoice mode, international surcharges, and PDF export.',
-    url: 'https://kazcut.vercel.app/stripe-fee-calculator',
+    url: '/stripe-fee-calculator',
   },
 };
 

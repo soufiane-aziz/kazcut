@@ -9,13 +9,13 @@ export const metadata: Metadata = {
   description:
     'Calculate the exact billable hourly rate required to hit your target take-home salary after self-employment taxes, business expenses, and unbillable hours.',
   alternates: {
-    canonical: 'https://kazcut.vercel.app/freelance-hourly-rate-calculator',
+    canonical: '/freelance-hourly-rate-calculator',
   },
   openGraph: {
     title: 'Freelance Hourly Rate Calculator | Kazcut',
     description:
       'Determine your target billable hourly and day rate based on desired net income, tax rate, and business overhead.',
-    url: 'https://kazcut.vercel.app/freelance-hourly-rate-calculator',
+    url: '/freelance-hourly-rate-calculator',
   },
 };
 

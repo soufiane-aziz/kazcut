@@ -9,13 +9,13 @@ export const metadata: Metadata = {
   description:
     'Free Amazon FBA calculator. Calculate referral fees, FBA fulfillment tier costs, storage fees, and unit net profit margin.',
   alternates: {
-    canonical: 'https://kazcut.vercel.app/amazon-fba-calculator',
+    canonical: '/amazon-fba-calculator',
   },
   openGraph: {
     title: 'Amazon FBA Profit & Fee Calculator | Kazcut',
     description:
       'Calculate Amazon FBA unit economics, pick and pack fulfillment costs, and net margin ROI with instant PDF export.',
-    url: 'https://kazcut.vercel.app/amazon-fba-calculator',
+    url: '/amazon-fba-calculator',
   },
 };
 

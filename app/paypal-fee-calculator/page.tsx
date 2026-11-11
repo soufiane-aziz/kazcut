@@ -9,13 +9,13 @@ export const metadata: Metadata = {
   description:
     'Free PayPal fee calculator for domestic, international, and invoice transactions. Calculate net payout or the exact amount to invoice to net your target.',
   alternates: {
-    canonical: 'https://kazcut.vercel.app/paypal-fee-calculator',
+    canonical: '/paypal-fee-calculator',
   },
   openGraph: {
     title: 'PayPal Fee Calculator | Kazcut',
     description:
       'Calculate domestic and international PayPal fees, net bank payout, and required invoice amounts with instant PDF summary export.',
-    url: 'https://kazcut.vercel.app/paypal-fee-calculator',
+    url: '/paypal-fee-calculator',
   },
 };
 

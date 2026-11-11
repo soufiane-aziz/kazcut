@@ -1,6 +1,9 @@
 import { MetadataRoute } from 'next';
+import { getSiteUrl } from '@/lib/siteUrl';
 
 export default function robots(): MetadataRoute.Robots {
+  const baseUrl = getSiteUrl();
+
   return {
     rules: [
       {
@@ -17,8 +20,8 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
       },
     ],
-    sitemap: 'https://kazcut.vercel.app/sitemap.xml',
-    host: 'https://kazcut.vercel.app',
+    sitemap: `${baseUrl}/sitemap.xml`,
+    host: baseUrl,
   };
 }
 

@@ -9,13 +9,13 @@ export const metadata: Metadata = {
   description:
     'Free Shopify profit margin calculator. Factor in COGS, ad spend CAC, fulfillment, and payment gateway fees to calculate net transaction profit.',
   alternates: {
-    canonical: 'https://kazcut.vercel.app/shopify-profit-calculator',
+    canonical: '/shopify-profit-calculator',
   },
   openGraph: {
     title: 'Shopify Profit Margin Calculator | Kazcut',
     description:
       'Calculate Shopify store margins, break-even CAC, gateway fees, and monthly net profit with instant PDF export.',
-    url: 'https://kazcut.vercel.app/shopify-profit-calculator',
+    url: '/shopify-profit-calculator',
   },
 };
 
