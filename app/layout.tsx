@@ -3,6 +3,8 @@ import Script from 'next/script';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import GuideModal from '@/components/GuideModal';
+import { GuideProvider } from '@/context/GuideContext';
 import { getSiteUrl } from '@/lib/siteUrl';
 
 const siteUrl = getSiteUrl();
@@ -81,9 +83,12 @@ export default function RootLayout({
         )}
       </head>
       <body className="min-h-screen flex flex-col bg-[#FDFBF7] text-[#2C221E] antialiased">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <GuideProvider>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <GuideModal />
+        </GuideProvider>
       </body>
     </html>
   );

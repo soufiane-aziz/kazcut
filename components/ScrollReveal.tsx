@@ -51,11 +51,10 @@ export default function ScrollReveal({
       style={{
         transitionDelay: `${delayMs}ms`,
       }}
-      className={`transform transition-all duration-700 ease-out ${
-        isVisible
+      className={`transform transition-all duration-700 ease-out ${isVisible
           ? 'translate-y-0 opacity-100'
           : 'translate-y-7 opacity-0'
-      } ${className}`}
+        } ${className}`}
     >
       {children}
     </div>

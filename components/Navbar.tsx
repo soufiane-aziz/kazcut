@@ -3,7 +3,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, HelpCircle } from 'lucide-react';
+import { useGuide } from '@/context/GuideContext';
 
 const CALCULATOR_NAV_LINKS = [
   { name: 'PayPal', href: '/paypal-fee-calculator' },
@@ -17,6 +18,7 @@ const CALCULATOR_NAV_LINKS = [
 export default function Navbar() {
   const pathname = usePathname();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const { openGuide } = useGuide();
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-[#EFEAD8] bg-[#FDFBF7]/95 backdrop-blur-md">
@@ -52,17 +54,15 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Right: Action Button Configured to Do Nothing */}
+        {/* Right: Action Button to Open Platform Guide */}
         <div className="hidden shrink-0 items-center gap-3 sm:flex">
           <button
             type="button"
-            onClick={(e) => {
-              e.preventDefault();
-              // Configured to perform no action as requested
-            }}
-            className="inline-flex h-8 items-center justify-center rounded-md bg-[#C58842] px-3.5 text-xs font-medium text-white transition hover:bg-[#A86E31] cursor-pointer"
+            onClick={openGuide}
+            className="inline-flex h-8 items-center justify-center gap-1.5 rounded-md bg-[#C58842] px-3.5 text-xs font-medium text-white shadow-xs transition hover:bg-[#A86E31] cursor-pointer"
           >
-            All Calculators
+            <HelpCircle className="h-3.5 w-3.5 opacity-90" />
+            <span>Platform Guide</span>
           </button>
         </div>
 
@@ -100,13 +100,14 @@ export default function Navbar() {
             <div className="pt-2">
               <button
                 type="button"
-                onClick={(e) => {
-                  e.preventDefault();
+                onClick={() => {
                   setIsMobileOpen(false);
+                  openGuide();
                 }}
-                className="flex w-full items-center justify-center rounded-md bg-[#C58842] py-2 text-xs font-medium text-white transition hover:bg-[#A86E31]"
+                className="flex w-full items-center justify-center gap-1.5 rounded-md bg-[#C58842] py-2 text-xs font-medium text-white transition hover:bg-[#A86E31]"
               >
-                All Calculators
+                <HelpCircle className="h-3.5 w-3.5" />
+                <span>Platform Guide</span>
               </button>
             </div>
           </div>
