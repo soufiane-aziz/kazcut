@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --color-caramel: #C58842;
+  --color-caramel-hover: #A86E31;
+  --color-caramel-light: #F6EDE1;
+  --color-caramel-subtle: #FAF5EE;
+  
+  --color-linen: #FDFBF7;
+  --color-surface: #FFFFFF;
+  --color-warm-border: #EFEAD8;
+  --color-warm-border-strong: #E2D9C3;
+  
+  --color-cocoa: #2C221E;
+  --color-mocha: #6E5D54;
+  --color-mocha-light: #9B8C83;
+
+  --color-badge-green: #2B7A4B;
+  --color-badge-green-bg: #EBF7EE;
+  --color-badge-red: #B43428;
+  --color-badge-red-bg: #FDF2F0;
+}
+
+:root {
+  --background: #FDFBF7;
+  --foreground: #2C221E;
+}
+
+body {
+  background-color: #FDFBF7;
+  color: #2C221E;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar and input slider styling */
+input[type="range"] {
+  accent-color: #C58842;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Print styling for PDF generation */
+@media print {
+  body {
+    background-color: #ffffff !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
