@@ -8,8 +8,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           {/* Logo & Direct Description */}
           <div className="md:col-span-1">
-            <Link href="/" className="text-lg font-semibold tracking-tight text-[#2C221E]">
-              Kazcut
+            <Link href="/" className="text-lg font-semibold tracking-tight">
+              <span className="text-[#2C221E]">Kaz</span>
+              <span className="text-[#C58842]">cut</span>
             </Link>
             <p className="mt-2 text-xs leading-relaxed text-[#6E5D54]">
               Independent financial calculators and profit fee estimation tools for digital merchants, e-commerce sellers, and freelancers.

@@ -26,6 +26,10 @@
   --foreground: #2C221E;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: #FDFBF7;
   color: #2C221E;

@@ -1,7 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import AdSenseSlot from '@/components/AdSenseSlot';
+import ScrollReveal from '@/components/ScrollReveal';
 import { ALL_CALCULATORS } from '@/lib/geoData';
 
 export default function HomePage() {
@@ -76,169 +77,138 @@ export default function HomePage() {
       </div>
 
       {/* Hero Section */}
-      <div className="py-8 text-center sm:py-12">
-        <div className="inline-flex items-center gap-2 rounded-full border border-[#EFEAD8] bg-[#FAF5EE] px-3 py-1 text-xs font-medium text-[#6E5D54]">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#C58842]" />
-          Updated for 2026 Merchant Fee Schedules
-        </div>
-        <h1 className="mt-4 text-3xl font-bold tracking-tight text-[#2C221E] sm:text-5xl">
-          Calculate platform fees and net profit.
-        </h1>
-        <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-[#6E5D54] sm:text-base">
-          High-precision financial calculators for digital merchants, e-commerce stores, and independent freelancers. 100% client-side computation with instant PDF summary exports.
-        </p>
+      <ScrollReveal>
+        <div className="py-8 text-center sm:py-12">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#EFEAD8] bg-[#FAF5EE] px-3 py-1 text-xs font-medium text-[#6E5D54]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#C58842]" />
+            Updated for 2026 Merchant Fee Schedules
+          </div>
+          <h1 className="mt-4 text-3xl font-bold tracking-tight text-[#2C221E] sm:text-5xl">
+            Calculate platform fees and net profit.
+          </h1>
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-[#6E5D54] sm:text-base">
+            High-precision financial calculators for digital merchants, e-commerce stores, and independent freelancers. 100% client-side computation with instant PDF summary exports.
+          </p>
 
-        {/* Quick Launch Buttons */}
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
-          {ALL_CALCULATORS.map((tool) => (
-            <Link
-              key={tool.slug}
-              href={`/${tool.slug}`}
-              className="inline-flex items-center gap-1.5 rounded-md border border-[#EFEAD8] bg-white px-3 py-1.5 text-xs font-medium text-[#2C221E] shadow-2xs transition hover:border-[#C58842] hover:bg-[#FAF5EE]"
-            >
-              <span>{tool.shortName}</span>
-              <ArrowUpRight className="h-3 w-3 text-[#9B8C83]" />
-            </Link>
-          ))}
+          {/* Quick Launch Buttons */}
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
+            {ALL_CALCULATORS.map((tool) => (
+              <Link
+                key={tool.slug}
+                href={`/${tool.slug}`}
+                className="inline-flex items-center gap-1.5 rounded-md border border-[#EFEAD8] bg-white px-3 py-1.5 text-xs font-medium text-[#2C221E] shadow-2xs transition hover:border-[#C58842] hover:bg-[#FAF5EE]"
+              >
+                <span>{tool.shortName}</span>
+                <ArrowUpRight className="h-3 w-3 text-[#9B8C83]" />
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
+      </ScrollReveal>
 
       {/* Core Tools Directory Grid */}
-      <section id="tools" className="mt-8">
-        <div className="border-b border-[#EFEAD8] pb-4">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-[#2C221E]">
-            Financial Calculator Directory
-          </h2>
-          <p className="mt-1 text-xs text-[#6E5D54]">
-            Select a specialized engine below to calculate fee deductions, profit margins, and required invoice totals.
-          </p>
-        </div>
-
-        <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {ALL_CALCULATORS.map((tool) => (
-            <Link
-              key={tool.slug}
-              href={`/${tool.slug}`}
-              className="group flex flex-col justify-between rounded-xl border border-[#EFEAD8] bg-white p-6 shadow-2xs transition hover:border-[#C58842] hover:shadow-xs"
-            >
-              <div>
-                <div className="flex items-center justify-between">
-                  <span className="rounded-md bg-[#FAF5EE] px-2 py-0.5 text-[10px] font-medium text-[#6E5D54]">
-                    {tool.category}
-                  </span>
-                  <ArrowUpRight className="h-4 w-4 text-[#9B8C83] transition group-hover:text-[#C58842] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </div>
-                <h3 className="mt-3 text-base font-semibold text-[#2C221E] group-hover:text-[#C58842] transition">
-                  {tool.name}
-                </h3>
-                <p className="mt-2 text-xs leading-relaxed text-[#6E5D54]">
-                  {tool.description}
-                </p>
-              </div>
-
-              <div className="mt-6 border-t border-[#EFEAD8] pt-3 flex items-center justify-between text-xs font-medium text-[#C58842]">
-                <span>Open Calculator</span>
-                <span className="font-mono text-[11px] text-[#9B8C83]">2026 Rates</span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* Platform Fee Comparison Matrix */}
-      <section className="mt-14 rounded-xl border border-[#EFEAD8] bg-white p-6 shadow-2xs">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-[#EFEAD8] pb-4 gap-2">
-          <div>
+      <ScrollReveal delayMs={100}>
+        <section id="tools" className="mt-8">
+          <div className="border-b border-[#EFEAD8] pb-4">
             <h2 className="text-sm font-semibold uppercase tracking-wider text-[#2C221E]">
-              Platform Fee Comparison Matrix
+              Financial Calculator Directory
             </h2>
             <p className="mt-1 text-xs text-[#6E5D54]">
-              Side-by-side comparison of baseline transaction fees, payout schedules, and net take-home on a standard $100.00 transaction.
+              Select a specialized engine below to calculate fee deductions, profit margins, and required invoice totals.
             </p>
           </div>
-          <span className="text-[11px] font-mono text-[#9B8C83]">
-            Standard Commercial Tiers
-          </span>
-        </div>
 
-        <div className="mt-4 overflow-x-auto">
-          <table className="w-full text-left text-xs">
-            <thead className="border-b border-[#EFEAD8] bg-[#FAF5EE] text-[#6E5D54]">
-              <tr>
-                <th className="px-4 py-3 font-medium">Processing Platform</th>
-                <th className="px-4 py-3 font-medium">Domestic Fee Rate</th>
-                <th className="px-4 py-3 font-medium">Cross-Border Surcharge</th>
-                <th className="px-4 py-3 font-medium">Settlement Delay</th>
-                <th className="px-4 py-3 font-medium text-right">Net Payout on $100</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-[#EFEAD8] font-mono">
-              {comparisonRows.map((row) => (
-                <tr key={row.platform} className="hover:bg-[#FDFBF7] transition">
-                  <td className="px-4 py-3 font-sans font-semibold text-[#2C221E]">
-                    {row.platform}
-                  </td>
-                  <td className="px-4 py-3 text-[#2C221E]">{row.domesticFee}</td>
-                  <td className="px-4 py-3 text-[#6E5D54]">{row.internationalFee}</td>
-                  <td className="px-4 py-3 font-sans text-[#6E5D54]">{row.payoutDelay}</td>
-                  <td className="px-4 py-3 text-right font-bold text-[#C58842]">
-                    {row.payoutNetOn100}
-                  </td>
+          <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {ALL_CALCULATORS.map((tool, idx) => (
+              <Link
+                key={tool.slug}
+                href={`/${tool.slug}`}
+                className="group flex flex-col justify-between rounded-xl border border-[#EFEAD8] bg-white p-6 shadow-2xs transition hover:border-[#C58842] hover:shadow-xs"
+              >
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="rounded-md bg-[#FAF5EE] px-2 py-0.5 text-[10px] font-medium text-[#6E5D54]">
+                      {tool.category}
+                    </span>
+                    <ArrowUpRight className="h-4 w-4 text-[#9B8C83] transition group-hover:text-[#C58842] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </div>
+                  <h3 className="mt-3 text-base font-semibold text-[#2C221E] group-hover:text-[#C58842] transition">
+                    {tool.name}
+                  </h3>
+                  <p className="mt-2 text-xs leading-relaxed text-[#6E5D54]">
+                    {tool.description}
+                  </p>
+                </div>
+
+                <div className="mt-6 border-t border-[#EFEAD8] pt-3 flex items-center justify-between text-xs font-medium text-[#C58842]">
+                  <span>Open Calculator</span>
+                  <span className="font-mono text-[11px] text-[#9B8C83]">2026 Rates</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* Platform Fee Comparison Matrix */}
+      <ScrollReveal delayMs={150}>
+        <section className="mt-14 rounded-xl border border-[#EFEAD8] bg-white p-6 shadow-2xs">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-[#EFEAD8] pb-4 gap-2">
+            <div>
+              <h2 className="text-sm font-semibold uppercase tracking-wider text-[#2C221E]">
+                Platform Fee Comparison Matrix
+              </h2>
+              <p className="mt-1 text-xs text-[#6E5D54]">
+                Side-by-side comparison of baseline transaction fees, payout schedules, and net take-home on a standard $100.00 transaction.
+              </p>
+            </div>
+            <span className="text-[11px] font-mono text-[#9B8C83]">
+              Standard Commercial Tiers
+            </span>
+          </div>
+
+          <div className="mt-4 overflow-x-auto">
+            <table className="w-full text-left text-xs">
+              <thead className="border-b border-[#EFEAD8] bg-[#FAF5EE] text-[#6E5D54]">
+                <tr>
+                  <th className="px-4 py-3 font-medium">Processing Platform</th>
+                  <th className="px-4 py-3 font-medium">Domestic Fee Rate</th>
+                  <th className="px-4 py-3 font-medium">Cross-Border Surcharge</th>
+                  <th className="px-4 py-3 font-medium">Settlement Delay</th>
+                  <th className="px-4 py-3 font-medium text-right">Net Payout on $100</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      {/* Feature Principles & Engineering Standards */}
-      <section className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
-        <div className="rounded-xl border border-[#EFEAD8] bg-white p-5">
-          <div className="flex items-center gap-2">
-            <CheckCircle2 className="h-4 w-4 text-[#C58842]" />
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-[#2C221E]">
-              Zero Server Compute
-            </h3>
+              </thead>
+              <tbody className="divide-y divide-[#EFEAD8] font-mono">
+                {comparisonRows.map((row) => (
+                  <tr key={row.platform} className="hover:bg-[#FDFBF7] transition">
+                    <td className="px-4 py-3 font-sans font-semibold text-[#2C221E]">
+                      {row.platform}
+                    </td>
+                    <td className="px-4 py-3 text-[#2C221E]">{row.domesticFee}</td>
+                    <td className="px-4 py-3 text-[#6E5D54]">{row.internationalFee}</td>
+                    <td className="px-4 py-3 font-sans text-[#6E5D54]">{row.payoutDelay}</td>
+                    <td className="px-4 py-3 text-right font-bold text-[#C58842]">
+                      {row.payoutNetOn100}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-          <p className="mt-2 text-xs leading-relaxed text-[#6E5D54]">
-            All calculations execute instantaneously on client device threads. No sensitive financial transaction data is transmitted or retained on remote servers.
-          </p>
-        </div>
-
-        <div className="rounded-xl border border-[#EFEAD8] bg-white p-5">
-          <div className="flex items-center gap-2">
-            <CheckCircle2 className="h-4 w-4 text-[#C58842]" />
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-[#2C221E]">
-              Reverse Net Logic
-            </h3>
-          </div>
-          <p className="mt-2 text-xs leading-relaxed text-[#6E5D54]">
-            Calculators feature two-way inversion: determine fees deducted from gross billings or calculate the precise invoice total required to net an exact dollar target.
-          </p>
-        </div>
-
-        <div className="rounded-xl border border-[#EFEAD8] bg-white p-5">
-          <div className="flex items-center gap-2">
-            <CheckCircle2 className="h-4 w-4 text-[#C58842]" />
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-[#2C221E]">
-              Client-Side PDF Reports
-            </h3>
-          </div>
-          <p className="mt-2 text-xs leading-relaxed text-[#6E5D54]">
-            Generate and download formatted calculation reports for invoices, audit trails, and financial records with a single click without external dependencies.
-          </p>
-        </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
       {/* Bottom AdSense Section */}
-      <div className="mt-14">
-        <AdSenseSlot
-          slotId="home-footer-banner"
-          format="horizontal"
-          minHeight={90}
-          className="mx-auto max-w-5xl"
-        />
-      </div>
+      <ScrollReveal delayMs={200}>
+        <div className="mt-14">
+          <AdSenseSlot
+            slotId="home-footer-banner"
+            format="horizontal"
+            minHeight={90}
+            className="mx-auto max-w-5xl"
+          />
+        </div>
+      </ScrollReveal>
     </div>
   );
 }

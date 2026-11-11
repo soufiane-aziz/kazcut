@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ChevronDown, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const CALCULATOR_NAV_LINKS = [
   { name: 'PayPal', href: '/paypal-fee-calculator' },
@@ -17,76 +17,53 @@ const CALCULATOR_NAV_LINKS = [
 export default function Navbar() {
   const pathname = usePathname();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-[#EFEAD8] bg-[#FDFBF7]/95 backdrop-blur-md">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Simple Text-Only Logo */}
-        <div className="flex items-center gap-8">
+        {/* Left: Logo with 'cut' in Caramel */}
+        <div className="flex shrink-0 items-center">
           <Link
             href="/"
-            className="text-lg font-semibold tracking-tight text-[#2C221E] transition hover:opacity-80"
+            className="text-lg font-semibold tracking-tight transition hover:opacity-85"
           >
-            Kazcut
+            <span className="text-[#2C221E]">Kaz</span>
+            <span className="text-[#C58842]">cut</span>
           </Link>
-
-          {/* Desktop Nav Links */}
-          <nav className="hidden items-center gap-1 md:flex">
-            {CALCULATOR_NAV_LINKS.slice(0, 4).map((link) => {
-              const isActive = pathname.startsWith(link.href);
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`rounded-md px-3 py-1.5 text-xs font-medium transition ${
-                    isActive
-                      ? 'bg-[#F4EAD9] text-[#2C221E]'
-                      : 'text-[#6E5D54] hover:bg-[#FAF5EE] hover:text-[#2C221E]'
-                  }`}
-                >
-                  {link.name}
-                </Link>
-              );
-            })}
-
-            {/* More Calculators Dropdown */}
-            <div className="relative">
-              <button
-                type="button"
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                onBlur={() => setTimeout(() => setIsDropdownOpen(false), 200)}
-                className="flex items-center gap-1 rounded-md px-3 py-1.5 text-xs font-medium text-[#6E5D54] transition hover:bg-[#FAF5EE] hover:text-[#2C221E]"
-              >
-                More
-                <ChevronDown className="h-3.5 w-3.5 opacity-70" />
-              </button>
-
-              {isDropdownOpen && (
-                <div className="absolute left-0 mt-1 w-48 rounded-md border border-[#EFEAD8] bg-white py-1 shadow-sm">
-                  {CALCULATOR_NAV_LINKS.slice(4).map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className="block px-3 py-2 text-xs font-medium text-[#6E5D54] transition hover:bg-[#FAF5EE] hover:text-[#2C221E]"
-                    >
-                      {link.name}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-          </nav>
         </div>
 
-        {/* Action Button */}
-        <div className="hidden items-center gap-3 sm:flex">
-          <Link
-            href="/#tools"
-            className="inline-flex h-8 items-center justify-center rounded-md bg-[#C58842] px-3.5 text-xs font-medium text-white transition hover:bg-[#A86E31]"
+        {/* Center: All Menu Elements Separated and Centered */}
+        <nav className="hidden items-center justify-center gap-1 md:flex flex-1 px-4">
+          {CALCULATOR_NAV_LINKS.map((link) => {
+            const isActive = pathname.startsWith(link.href);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`rounded-md px-3 py-1.5 text-xs font-medium transition ${
+                  isActive
+                    ? 'bg-[#F4EAD9] text-[#2C221E]'
+                    : 'text-[#6E5D54] hover:bg-[#FAF5EE] hover:text-[#2C221E]'
+                }`}
+              >
+                {link.name}
+              </Link>
+            );
+          })}
+        </nav>
+
+        {/* Right: Action Button Configured to Do Nothing */}
+        <div className="hidden shrink-0 items-center gap-3 sm:flex">
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              // Configured to perform no action as requested
+            }}
+            className="inline-flex h-8 items-center justify-center rounded-md bg-[#C58842] px-3.5 text-xs font-medium text-white transition hover:bg-[#A86E31] cursor-pointer"
           >
             All Calculators
-          </Link>
+          </button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -121,13 +98,16 @@ export default function Navbar() {
               </Link>
             ))}
             <div className="pt-2">
-              <Link
-                href="/#tools"
-                onClick={() => setIsMobileOpen(false)}
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileOpen(false);
+                }}
                 className="flex w-full items-center justify-center rounded-md bg-[#C58842] py-2 text-xs font-medium text-white transition hover:bg-[#A86E31]"
               >
                 All Calculators
-              </Link>
+              </button>
             </div>
           </div>
         </div>
@@ -135,4 +115,3 @@ export default function Navbar() {
     </header>
   );
 }
-
