@@ -55,7 +55,7 @@ export default function PaypalCalculator({
       {/* Interactive Controls & Output Container */}
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
         {/* Left Column: Inputs & Sliders */}
-        <div className="rounded-xl border border-[#EFEAD8] bg-white p-6 shadow-xs lg:col-span-6">
+        <div className="rounded-xl border border-[#E7DFCC] bg-white p-6 box-card lg:col-span-6">
           <div className="flex items-center justify-between border-b border-[#EFEAD8] pb-4">
             <h2 className="text-sm font-semibold tracking-tight text-[#2C221E]">
               Calculator Settings
@@ -221,7 +221,7 @@ export default function PaypalCalculator({
           {/* Printable Report Wrapper */}
           <div
             id={reportElementId}
-            className="rounded-xl border border-[#EFEAD8] bg-white p-6 shadow-xs"
+            className="rounded-xl border border-[#E7DFCC] bg-white p-6 box-card"
           >
             <div className="flex items-center justify-between border-b border-[#EFEAD8] pb-4">
               <div>
@@ -351,7 +351,7 @@ export default function PaypalCalculator({
       </div>
 
       {/* Comparison Reference Matrix */}
-      <div className="rounded-xl border border-[#EFEAD8] bg-white p-6 shadow-xs">
+      <div className="rounded-xl border border-[#E7DFCC] bg-white p-6 box-card">
         <h3 className="text-xs font-semibold uppercase tracking-wider text-[#2C221E]">
           Volume Reference Matrix ({currency})
         </h3>

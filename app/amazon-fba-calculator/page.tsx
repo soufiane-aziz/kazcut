@@ -113,7 +113,7 @@ export default function AmazonFbaPage() {
         <AdSenseSlot slotId="amazon-bottom-banner" format="horizontal" minHeight={90} />
       </div>
 
-      <section className="mt-14 rounded-xl border border-[#EFEAD8] bg-white p-6 sm:p-8">
+      <section className="mt-14 rounded-xl border border-[#E7DFCC] bg-white p-6 sm:p-8 box-card">
         <h2 className="text-base font-semibold text-[#2C221E]">
           Amazon FBA Fee Structure Guidelines
         </h2>

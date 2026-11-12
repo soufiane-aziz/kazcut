@@ -250,7 +250,7 @@ export default async function ProgrammaticPage({ params }: PageProps) {
 
       {/* Localized FAQ Section */}
       {config.faqs && config.faqs.length > 0 && (
-        <section className="mt-14 rounded-xl border border-[#EFEAD8] bg-white p-6 sm:p-8">
+        <section className="mt-14 rounded-xl border border-[#E7DFCC] bg-white p-6 sm:p-8 box-card">
           <h2 className="text-base font-semibold text-[#2C221E]">
             Frequently Asked Questions: {config.title}
           </h2>

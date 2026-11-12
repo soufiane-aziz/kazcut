@@ -61,7 +61,7 @@ export default function StripeCalculator({
     <div className="space-y-8">
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
         {/* Left Column: Inputs */}
-        <div className="rounded-xl border border-[#EFEAD8] bg-white p-6 shadow-xs lg:col-span-6">
+        <div className="rounded-xl border border-[#E7DFCC] bg-white p-6 box-card lg:col-span-6">
           <div className="flex items-center justify-between border-b border-[#EFEAD8] pb-4">
             <h2 className="text-sm font-semibold tracking-tight text-[#2C221E]">
               Stripe Parameters
@@ -248,7 +248,7 @@ export default function StripeCalculator({
         <div className="space-y-6 lg:col-span-6">
           <div
             id={reportElementId}
-            className="rounded-xl border border-[#EFEAD8] bg-white p-6 shadow-xs"
+            className="rounded-xl border border-[#E7DFCC] bg-white p-6 box-card"
           >
             <div className="flex items-center justify-between border-b border-[#EFEAD8] pb-4">
               <div>

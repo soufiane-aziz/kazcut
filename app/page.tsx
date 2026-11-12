@@ -96,7 +96,7 @@ export default function HomePage() {
               <Link
                 key={tool.slug}
                 href={`/${tool.slug}`}
-                className="inline-flex items-center gap-1.5 rounded-md border border-[#EFEAD8] bg-white px-3 py-1.5 text-xs font-medium text-[#2C221E] shadow-2xs transition hover:border-[#C58842] hover:bg-[#FAF5EE]"
+                className="inline-flex items-center gap-1.5 rounded-md border border-[#E7DFCC] bg-white px-3 py-1.5 text-xs font-medium text-[#2C221E] shadow-xs transition hover:shadow-md hover:border-[#C58842] hover:bg-[#FAF5EE] hover:-translate-y-0.5"
               >
                 <span>{tool.shortName}</span>
                 <ArrowUpRight className="h-3 w-3 text-[#9B8C83]" />
@@ -128,7 +128,7 @@ export default function HomePage() {
             >
               <Link
                 href={`/${tool.slug}`}
-                className="group flex h-full flex-col justify-between rounded-xl border border-[#EFEAD8] bg-white p-6 shadow-2xs transition-all duration-300 hover:-translate-y-1 hover:border-[#C58842] hover:shadow-xs"
+                className="group flex h-full flex-col justify-between rounded-xl border border-[#E7DFCC] bg-white p-6 box-card-interactive"
               >
                 <div>
                   <div className="flex items-center justify-between">
@@ -157,7 +157,7 @@ export default function HomePage() {
 
       {/* Platform Fee Comparison Matrix */}
       <ScrollReveal delayMs={150}>
-        <section className="mt-14 rounded-xl border border-[#EFEAD8] bg-white p-6 shadow-2xs">
+        <section className="mt-14 rounded-xl border border-[#E7DFCC] bg-white p-6 box-card">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-[#EFEAD8] pb-4 gap-2">
             <div>
               <h2 className="text-sm font-semibold uppercase tracking-wider text-[#2C221E]">
