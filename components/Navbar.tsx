@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X, HelpCircle } from 'lucide-react';
 import { useGuide } from '@/context/GuideContext';
@@ -27,10 +28,20 @@ export default function Navbar() {
         <div className="flex shrink-0 items-center">
           <Link
             href="/"
-            className="text-lg font-semibold tracking-tight transition hover:opacity-85"
+            className="flex items-center gap-2 text-lg font-semibold tracking-tight transition hover:opacity-85"
           >
-            <span className="text-[#2C221E]">Kaz</span>
-            <span className="text-[#C58842]">cut</span>
+            <Image
+              src="/icon-48.png"
+              alt="Kazcut Logo"
+              width={24}
+              height={24}
+              className="rounded-md border border-[#E7DFCC]/60"
+              priority
+            />
+            <span>
+              <span className="text-[#2C221E]">Kaz</span>
+              <span className="text-[#C58842]">cut</span>
+            </span>
           </Link>
         </div>
 

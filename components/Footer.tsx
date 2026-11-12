@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Footer() {
   return (
@@ -8,9 +9,18 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           {/* Logo & Direct Description */}
           <div className="md:col-span-1">
-            <Link href="/" className="text-lg font-semibold tracking-tight">
-              <span className="text-[#2C221E]">Kaz</span>
-              <span className="text-[#C58842]">cut</span>
+            <Link href="/" className="flex items-center gap-2 text-lg font-semibold tracking-tight">
+              <Image
+                src="/icon-48.png"
+                alt="Kazcut Logo"
+                width={22}
+                height={22}
+                className="rounded-md border border-[#E7DFCC]/60"
+              />
+              <span>
+                <span className="text-[#2C221E]">Kaz</span>
+                <span className="text-[#C58842]">cut</span>
+              </span>
             </Link>
             <p className="mt-2 text-xs leading-relaxed text-[#6E5D54]">
               Independent financial calculators and profit fee estimation tools for digital merchants, e-commerce sellers, and freelancers.

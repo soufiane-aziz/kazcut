@@ -8,16 +8,58 @@ import { ALL_CALCULATORS } from '@/lib/geoData';
 export default function HomePage() {
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
-    name: 'Kazcut',
-    operatingSystem: 'All',
-    applicationCategory: 'BusinessApplication',
-    description: 'Financial profit and transaction fee calculators for digital merchants, e-commerce sellers, and freelancers.',
-    offers: {
-      '@type': 'Offer',
-      price: '0.00',
-      priceCurrency: 'USD',
-    },
+    '@graph': [
+      {
+        '@type': 'SoftwareApplication',
+        name: 'Kazcut',
+        operatingSystem: 'All (Web-based)',
+        applicationCategory: 'BusinessApplication',
+        description:
+          'Official Kazcut profit and platform fee calculation platform for digital merchants and freelancers.',
+        offers: {
+          '@type': 'Offer',
+          price: '0.00',
+          priceCurrency: 'USD',
+        },
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: [
+          {
+            '@type': 'Question',
+            name: 'What is Kazcut?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Kazcut is a 100% free financial and fee calculation platform designed for digital merchants, e-commerce stores, and independent freelancers. Kazcut calculates exact transaction fees, net margins, and required invoice totals for PayPal, Stripe, Etsy, Amazon FBA, Shopify, and freelance hourly billing.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'Is Kazcut related to CapCut or video editing software?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'No. Kazcut is an independent digital financial calculator utility engineered exclusively for commercial fee modeling, merchant take-home estimations, and payment processing economics. Kazcut has no relation or affiliation with CapCut or video editing software.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'Are Kazcut calculations updated for 2026 rates?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Yes. Kazcut algorithms are continuously calibrated against official 2026 merchant fee schedules, cross-border assessment surcharges, and marketplace commission schedules.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'Does Kazcut store my financial numbers?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'No. All mathematical operations execute entirely client-side inside your browser thread with zero server compute, ensuring complete data privacy and instant reactivity.',
+            },
+          },
+        ],
+      },
+    ],
   };
 
   const comparisonRows = [
@@ -199,6 +241,65 @@ export default function HomePage() {
                 ))}
               </tbody>
             </table>
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* Brand Entity & Knowledge Center (SEO Dominance for 'Kazcut') */}
+      <ScrollReveal delayMs={175}>
+        <section className="mt-14 rounded-xl border border-[#E7DFCC] bg-white p-6 sm:p-8 box-card">
+          <div className="border-b border-[#EFEAD8] pb-4">
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#C58842]">
+              Official Platform Knowledge
+            </span>
+            <h2 className="mt-1 text-xl font-bold text-[#2C221E] sm:text-2xl">
+              About Kazcut™ Financial Platform
+            </h2>
+            <p className="mt-1 text-xs text-[#6E5D54]">
+              High-precision digital commerce calculation tools engineered for sellers, founders, and independent contractors worldwide.
+            </p>
+          </div>
+
+          <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2 text-xs leading-relaxed text-[#6E5D54]">
+            <div className="space-y-4">
+              <div>
+                <h3 className="font-semibold text-[#2C221E] text-sm">
+                  What is Kazcut?
+                </h3>
+                <p className="mt-1">
+                  <strong>Kazcut</strong> is a dedicated financial calculation engine engineered to solve merchant processing opacity. Whether calculating fee deductions on PayPal and Stripe or modeling multi-tier profit margins across Etsy, Amazon FBA, and Shopify, Kazcut gives sellers instant mathematical clarity before billing or fulfilling orders.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-[#2C221E] text-sm">
+                  Entity Disambiguation
+                </h3>
+                <p className="mt-1">
+                  <strong>Kazcut</strong> is an independent fintech utility brand. Kazcut has no affiliation, connection, or sponsorship with video editing applications such as CapCut or multimedia editing tools. All Kazcut tools focus exclusively on commercial financial analytics and merchant fee accounting.
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <h3 className="font-semibold text-[#2C221E] text-sm">
+                  Reverse Net Inversion Logic
+                </h3>
+                <p className="mt-1">
+                  Most merchant fee calculators only tell you what is deducted from an invoice. Kazcut features two-way mathematical inversion: determine exactly what gross dollar amount you must invoice a client or customer to receive your desired net profit after domestic and cross-border cuts.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-[#2C221E] text-sm">
+                  Zero Server Data Transmission
+                </h3>
+                <p className="mt-1">
+                  All transaction formulas execute purely client-side within your browser runtime. None of your sales figures, customer billing totals, or pricing configurations are sent to or stored on remote servers.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
       </ScrollReveal>
