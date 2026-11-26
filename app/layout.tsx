@@ -150,14 +150,17 @@ export const metadata: Metadata = {
   creator: 'Kazcut',
   publisher: 'Kazcut',
   applicationName: 'Kazcut',
+  appleWebApp: {
+    title: 'Kazcut',
+  },
   category: 'Finance',
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
       { url: '/icon-48.png', sizes: '48x48', type: 'image/png' },
       { url: '/icon-96.png', sizes: '96x96', type: 'image/png' },
       { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
       { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+      { url: '/favicon.ico', sizes: '48x48 32x32 16x16' },
     ],
     apple: [
       { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
@@ -233,7 +236,7 @@ export default function RootLayout({
       {
         '@type': 'WebSite',
         '@id': `${siteUrl}/#website`,
-        url: siteUrl,
+        url: `${siteUrl}/`,
         name: 'Kazcut',
         alternateName: [
           'Kazcut Official',
@@ -291,15 +294,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon-48.png" sizes="48x48" type="image/png" />
-        <link rel="icon" href="/icon-96.png" sizes="96x96" type="image/png" />
-        <link rel="icon" href="/icon-192.png" sizes="192x192" type="image/png" />
-        <link rel="icon" href="/icon-512.png" sizes="512x512" type="image/png" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
-        <link rel="manifest" href="/site.webmanifest" />
-        <meta name="apple-mobile-web-app-title" content="Kazcut" />
-        <meta name="application-name" content="Kazcut" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(globalSchema) }}
