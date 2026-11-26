@@ -6,6 +6,8 @@ import { freelanceSchema, FreelanceInputs } from '@/lib/validations';
 import FeeChart from '@/components/FeeChart';
 import PdfExportButton from '@/components/PdfExportButton';
 import SaveCalculationModal from '@/components/SaveCalculationModal';
+import LoadedTemplateBanner from '@/components/LoadedTemplateBanner';
+import { useSavedTemplate } from '@/hooks/useSavedTemplate';
 
 interface FreelanceCalculatorProps {
   initialCurrency?: 'USD' | 'EUR' | 'GBP' | 'CAD' | 'AUD' | 'CHF';
@@ -29,6 +31,21 @@ export default function FreelanceCalculator({
   const [profitBuffer, setProfitBuffer] = useState<number>(10);
   const [currency, setCurrency] = useState<FreelanceInputs['currency']>(initialCurrency);
 
+  const { loadedTemplateTitle, dismissLoadedTemplate } = useSavedTemplate({
+    calculatorType: 'freelance',
+    schema: freelanceSchema,
+    onApply: (inputs) => {
+      setTargetNetIncome(inputs.targetNetAnnualIncome);
+      setHoursPerWeek(inputs.hoursPerWeek);
+      setVacationWeeks(inputs.vacationWeeksPerYear);
+      setNonBillablePercent(inputs.nonBillablePercent);
+      setTaxRate(inputs.effectiveTaxRatePercent);
+      setBusinessExpenses(inputs.annualBusinessExpenses);
+      setProfitBuffer(inputs.profitMarginBufferPercent);
+      setCurrency(inputs.currency);
+    },
+  });
+
   const containerId = useId().replace(/:/g, '');
   const reportElementId = `freelance-report-${containerId}`;
 
@@ -47,6 +64,7 @@ export default function FreelanceCalculator({
 
   return (
     <div className="space-y-8">
+      <LoadedTemplateBanner title={loadedTemplateTitle} onDismiss={dismissLoadedTemplate} />
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
         {/* Left Column: Input Form */}
         <div className="rounded-xl border border-[#E7DFCC] bg-white p-6 box-card lg:col-span-6">

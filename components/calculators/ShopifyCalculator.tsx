@@ -11,6 +11,8 @@ import { shopifySchema, ShopifyInputs } from '@/lib/validations';
 import FeeChart from '@/components/FeeChart';
 import PdfExportButton from '@/components/PdfExportButton';
 import SaveCalculationModal from '@/components/SaveCalculationModal';
+import LoadedTemplateBanner from '@/components/LoadedTemplateBanner';
+import { useSavedTemplate } from '@/hooks/useSavedTemplate';
 
 interface ShopifyCalculatorProps {
   initialCurrency?: 'USD' | 'EUR' | 'GBP' | 'CAD' | 'AUD';
@@ -39,6 +41,24 @@ export default function ShopifyCalculator({
   const [monthlyOrders, setMonthlyOrders] = useState<number>(500);
   const [currency, setCurrency] = useState<ShopifyInputs['currency']>(initialCurrency);
 
+  const { loadedTemplateTitle, dismissLoadedTemplate } = useSavedTemplate({
+    calculatorType: 'shopify',
+    schema: shopifySchema,
+    onApply: (inputs) => {
+      setRetailPrice(inputs.retailPrice);
+      setCogs(inputs.cogs);
+      setShippingCharged(inputs.shippingCharged);
+      setShippingCost(inputs.shippingCost);
+      setAdSpendPerOrder(inputs.adSpendPerOrder);
+      setOtherCostsPerOrder(inputs.otherCostsPerOrder);
+      setPlanType(inputs.planType);
+      if (inputs.customGatewayPercent !== undefined) setCustomPercent(inputs.customGatewayPercent);
+      if (inputs.customGatewayFixed !== undefined) setCustomFixed(inputs.customGatewayFixed);
+      setMonthlyOrders(inputs.estimatedMonthlyOrders);
+      setCurrency(inputs.currency);
+    },
+  });
+
   const containerId = useId().replace(/:/g, '');
   const reportElementId = `shopify-report-${containerId}`;
 
@@ -60,6 +80,7 @@ export default function ShopifyCalculator({
 
   return (
     <div className="space-y-8">
+      <LoadedTemplateBanner title={loadedTemplateTitle} onDismiss={dismissLoadedTemplate} />
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
         {/* Left Column: Input Form */}
         <div className="rounded-xl border border-[#E7DFCC] bg-white p-6 box-card lg:col-span-6">

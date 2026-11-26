@@ -62,6 +62,10 @@ export async function saveCalculationTemplate(data: Omit<SavedCalculationRecord,
  * Fetches a saved calculation by share ID
  */
 export async function getCalculationTemplate(shareId: string): Promise<SavedCalculationRecord | null> {
+  if (!shareId || !/^[a-zA-Z0-9_-]{6,64}$/.test(shareId)) {
+    return null;
+  }
+
   try {
     if (supabase && isSupabaseConfigured) {
       const { data, error } = await supabase

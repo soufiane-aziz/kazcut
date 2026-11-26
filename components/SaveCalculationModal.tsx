@@ -12,6 +12,15 @@ interface SaveCalculationModalProps {
   defaultTitle?: string;
 }
 
+const CALCULATOR_ROUTE_MAP: Record<SaveCalculationModalProps['calculatorType'], string> = {
+  paypal: '/paypal-fee-calculator',
+  stripe: '/stripe-fee-calculator',
+  etsy: '/etsy-fee-calculator',
+  amazon: '/amazon-fba-calculator',
+  shopify: '/shopify-profit-calculator',
+  freelance: '/freelance-hourly-rate-calculator',
+};
+
 export default function SaveCalculationModal({
   calculatorType,
   currency,
@@ -29,7 +38,11 @@ export default function SaveCalculationModal({
     e.preventDefault();
     setIsSaving(true);
 
-    const shareId = `${calculatorType.substring(0, 3)}-${Math.random().toString(36).substring(2, 9)}`;
+    const suffix =
+      typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
+        ? crypto.randomUUID().replace(/-/g, '').slice(0, 8)
+        : Math.random().toString(36).substring(2, 10);
+    const shareId = `${calculatorType.substring(0, 3)}-${suffix}`;
 
     try {
       const res = await saveCalculationTemplate({
@@ -42,7 +55,8 @@ export default function SaveCalculationModal({
       });
 
       if (res.success) {
-        const fullUrl = `${window.location.origin}/${calculatorType}-fee-calculator?template=${res.shareId}`;
+        const routePath = CALCULATOR_ROUTE_MAP[calculatorType];
+        const fullUrl = `${window.location.origin}${routePath}?template=${res.shareId}`;
         setShareUrl(fullUrl);
       }
     } catch (err) {
@@ -63,7 +77,11 @@ export default function SaveCalculationModal({
     <>
       <button
         type="button"
-        onClick={() => setIsOpen(true)}
+        onClick={() => {
+          setTitle(defaultTitle);
+          setShareUrl(null);
+          setIsOpen(true);
+        }}
         className="inline-flex items-center gap-1.5 rounded-lg border border-[#E2D9C3] bg-white px-3 py-2 text-xs font-medium text-[#2C221E] shadow-sm transition hover:bg-[#FAF5EE] hover:border-[#C58842]"
       >
         <Share2 className="h-3.5 w-3.5 text-[#6E5D54]" />

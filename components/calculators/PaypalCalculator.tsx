@@ -12,6 +12,8 @@ import { paypalSchema, PaypalInputs } from '@/lib/validations';
 import FeeChart from '@/components/FeeChart';
 import PdfExportButton from '@/components/PdfExportButton';
 import SaveCalculationModal from '@/components/SaveCalculationModal';
+import LoadedTemplateBanner from '@/components/LoadedTemplateBanner';
+import { useSavedTemplate } from '@/hooks/useSavedTemplate';
 
 interface PaypalCalculatorProps {
   initialCurrency?: 'USD' | 'EUR' | 'GBP' | 'CAD' | 'AUD' | 'JPY';
@@ -31,6 +33,21 @@ export default function PaypalCalculator({
   const [useCustomRate, setUseCustomRate] = useState(false);
   const [customPercentage, setCustomPercentage] = useState(2.99);
   const [customFixedFee, setCustomFixedFee] = useState(0.49);
+
+  const { loadedTemplateTitle, dismissLoadedTemplate } = useSavedTemplate({
+    calculatorType: 'paypal',
+    schema: paypalSchema,
+    onApply: (inputs) => {
+      setAmount(inputs.amount);
+      setMode(inputs.mode);
+      setRateType(inputs.rateType);
+      setCurrency(inputs.currency);
+      const hasCustom = inputs.customPercentage !== undefined || inputs.customFixedFee !== undefined;
+      setUseCustomRate(hasCustom);
+      if (inputs.customPercentage !== undefined) setCustomPercentage(inputs.customPercentage);
+      if (inputs.customFixedFee !== undefined) setCustomFixedFee(inputs.customFixedFee);
+    },
+  });
 
   const containerId = useId().replace(/:/g, '');
   const reportElementId = `paypal-report-${containerId}`;
@@ -52,6 +69,7 @@ export default function PaypalCalculator({
 
   return (
     <div className="space-y-8">
+      <LoadedTemplateBanner title={loadedTemplateTitle} onDismiss={dismissLoadedTemplate} />
       {/* Interactive Controls & Output Container */}
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
         {/* Left Column: Inputs & Sliders */}

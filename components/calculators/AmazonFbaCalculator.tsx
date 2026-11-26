@@ -11,6 +11,8 @@ import { amazonFbaSchema, AmazonFbaInputs } from '@/lib/validations';
 import FeeChart from '@/components/FeeChart';
 import PdfExportButton from '@/components/PdfExportButton';
 import SaveCalculationModal from '@/components/SaveCalculationModal';
+import LoadedTemplateBanner from '@/components/LoadedTemplateBanner';
+import { useSavedTemplate } from '@/hooks/useSavedTemplate';
 
 interface AmazonFbaCalculatorProps {
   initialCurrency?: 'USD' | 'EUR' | 'GBP' | 'CAD';
@@ -41,6 +43,24 @@ export default function AmazonFbaCalculator({
   const [salesVelocity, setSalesVelocity] = useState<number>(350);
   const [currency, setCurrency] = useState<AmazonFbaInputs['currency']>(initialCurrency);
 
+  const { loadedTemplateTitle, dismissLoadedTemplate } = useSavedTemplate({
+    calculatorType: 'amazon',
+    schema: amazonFbaSchema,
+    onApply: (inputs) => {
+      setItemPrice(inputs.itemPrice);
+      setCogs(inputs.cogs);
+      setInboundShipping(inputs.inboundShipping);
+      setCategory(inputs.category);
+      setReferralRate(inputs.referralRatePercent);
+      setFbaTier(inputs.fbaTier);
+      if (inputs.customFbaFee !== undefined) setCustomFbaFee(inputs.customFbaFee);
+      setStorageMonths(inputs.monthlyStorageMonths);
+      setStoragePerUnit(inputs.estimatedStoragePerUnit);
+      setSalesVelocity(inputs.salesVelocityPerMonth);
+      setCurrency(inputs.currency);
+    },
+  });
+
   const containerId = useId().replace(/:/g, '');
   const reportElementId = `amazon-report-${containerId}`;
 
@@ -62,6 +82,7 @@ export default function AmazonFbaCalculator({
 
   return (
     <div className="space-y-8">
+      <LoadedTemplateBanner title={loadedTemplateTitle} onDismiss={dismissLoadedTemplate} />
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
         {/* Left Column: Input Form */}
         <div className="rounded-xl border border-[#E7DFCC] bg-white p-6 box-card lg:col-span-6">

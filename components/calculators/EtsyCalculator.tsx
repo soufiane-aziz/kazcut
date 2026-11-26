@@ -6,6 +6,8 @@ import { etsySchema, EtsyInputs } from '@/lib/validations';
 import FeeChart from '@/components/FeeChart';
 import PdfExportButton from '@/components/PdfExportButton';
 import SaveCalculationModal from '@/components/SaveCalculationModal';
+import LoadedTemplateBanner from '@/components/LoadedTemplateBanner';
+import { useSavedTemplate } from '@/hooks/useSavedTemplate';
 
 interface EtsyCalculatorProps {
   initialCurrency?: 'USD' | 'EUR' | 'GBP' | 'CAD' | 'AUD';
@@ -37,6 +39,23 @@ export default function EtsyCalculator({
   const [paymentFixed, setPaymentFixed] = useState<number>(0.25);
   const [regulatoryFeePercent, setRegulatoryFeePercent] = useState<number>(0);
 
+  const { loadedTemplateTitle, dismissLoadedTemplate } = useSavedTemplate({
+    calculatorType: 'etsy',
+    schema: etsySchema,
+    onApply: (inputs) => {
+      setSalePrice(inputs.salePrice);
+      setShippingCharged(inputs.shippingCharged);
+      setItemCost(inputs.itemCost);
+      setShippingCost(inputs.shippingCost);
+      setQuantity(inputs.quantity);
+      setOffsiteAds(inputs.offsiteAds);
+      setPaymentPercent(inputs.paymentProcessingPercent);
+      setPaymentFixed(inputs.paymentProcessingFixed);
+      setRegulatoryFeePercent(inputs.regulatoryOperatingFeePercent);
+      setCurrency(inputs.currency);
+    },
+  });
+
   const containerId = useId().replace(/:/g, '');
   const reportElementId = `etsy-report-${containerId}`;
 
@@ -57,6 +76,7 @@ export default function EtsyCalculator({
 
   return (
     <div className="space-y-8">
+      <LoadedTemplateBanner title={loadedTemplateTitle} onDismiss={dismissLoadedTemplate} />
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
         {/* Left Column: Input Form */}
         <div className="rounded-xl border border-[#E7DFCC] bg-white p-6 box-card lg:col-span-6">

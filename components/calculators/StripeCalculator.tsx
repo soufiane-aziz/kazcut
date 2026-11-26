@@ -11,6 +11,8 @@ import { stripeSchema, StripeInputs } from '@/lib/validations';
 import FeeChart from '@/components/FeeChart';
 import PdfExportButton from '@/components/PdfExportButton';
 import SaveCalculationModal from '@/components/SaveCalculationModal';
+import LoadedTemplateBanner from '@/components/LoadedTemplateBanner';
+import { useSavedTemplate } from '@/hooks/useSavedTemplate';
 
 interface StripeCalculatorProps {
   initialCurrency?: 'USD' | 'EUR' | 'GBP' | 'CAD' | 'AUD' | 'JPY';
@@ -40,6 +42,24 @@ export default function StripeCalculator({
   const [monthlyVolume, setMonthlyVolume] = useState<number>(10000);
   const [disputeRate, setDisputeRate] = useState<number>(0.25); // 0.25% industry baseline
 
+  const { loadedTemplateTitle, dismissLoadedTemplate } = useSavedTemplate({
+    calculatorType: 'stripe',
+    schema: stripeSchema,
+    onApply: (inputs) => {
+      setAmount(inputs.amount);
+      setMode(inputs.mode);
+      setIsInternational(inputs.isInternational);
+      setNeedsCurrencyConversion(inputs.needsCurrencyConversion);
+      setCurrency(inputs.currency);
+      const hasCustom = inputs.customRatePercent !== undefined || inputs.customFixedFee !== undefined;
+      setUseCustomRate(hasCustom);
+      if (inputs.customRatePercent !== undefined) setCustomRatePercent(inputs.customRatePercent);
+      if (inputs.customFixedFee !== undefined) setCustomFixedFee(inputs.customFixedFee);
+      if (inputs.estimatedMonthlyVolume !== undefined) setMonthlyVolume(inputs.estimatedMonthlyVolume);
+      if (inputs.estimatedDisputeRate !== undefined) setDisputeRate(inputs.estimatedDisputeRate);
+    },
+  });
+
   const containerId = useId().replace(/:/g, '');
   const reportElementId = `stripe-report-${containerId}`;
 
@@ -59,6 +79,7 @@ export default function StripeCalculator({
 
   return (
     <div className="space-y-8">
+      <LoadedTemplateBanner title={loadedTemplateTitle} onDismiss={dismissLoadedTemplate} />
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
         {/* Left Column: Inputs */}
         <div className="rounded-xl border border-[#E7DFCC] bg-white p-6 box-card lg:col-span-6">
