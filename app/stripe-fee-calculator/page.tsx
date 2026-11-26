@@ -3,9 +3,12 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import StripeCalculator from '@/components/calculators/StripeCalculator';
 import AdSenseSlot from '@/components/AdSenseSlot';
+import CalculatorLinksBar from '@/components/CalculatorLinksBar';
+import FeeCheatSheet from '@/components/FeeCheatSheet';
+import RelatedCalculatorsGrid from '@/components/RelatedCalculatorsGrid';
 
 export const metadata: Metadata = {
-  title: 'Stripe Fee Calculator (2026 Credit Card Processing Rates)',
+  title: 'Stripe Fee Calculator 2026 — Card & Cross-Border',
   description:
     'Calculate Stripe credit card processing fees, international card surcharges, currency conversion costs, and dispute risk buffers.',
   alternates: {
@@ -91,30 +94,15 @@ export default function StripeFeePage() {
           Calculate Stripe payment processing deductions, cross-border card surcharges, currency conversion fees, and net bank payouts.
         </p>
 
-        <div className="mt-4 flex flex-wrap items-center gap-2 text-xs">
-          <span className="font-medium text-[#6E5D54]">Regional Rates:</span>
-          <Link
-            href="/stripe-fee-calculator/in-usa"
-            className="rounded border border-[#EFEAD8] bg-white px-2.5 py-1 text-[#2C221E] hover:border-[#C58842]"
-          >
-            United States (USD)
-          </Link>
-          <Link
-            href="/stripe-fee-calculator/in-uk"
-            className="rounded border border-[#EFEAD8] bg-white px-2.5 py-1 text-[#2C221E] hover:border-[#C58842]"
-          >
-            United Kingdom (GBP)
-          </Link>
-          <Link
-            href="/stripe-fee-calculator/in-canada"
-            className="rounded border border-[#EFEAD8] bg-white px-2.5 py-1 text-[#2C221E] hover:border-[#C58842]"
-          >
-            Canada (CAD)
-          </Link>
-        </div>
+        <CalculatorLinksBar
+          calculatorSlug="stripe-fee-calculator"
+          label="Regional &amp; Card Guides:"
+        />
       </div>
 
       <StripeCalculator />
+
+      <FeeCheatSheet calculatorSlug="stripe-fee-calculator" />
 
       <div className="mt-12">
         <AdSenseSlot slotId="stripe-bottom-banner" format="horizontal" minHeight={90} />
@@ -148,6 +136,8 @@ export default function StripeFeePage() {
           </div>
         </div>
       </section>
+
+      <RelatedCalculatorsGrid currentSlug="stripe-fee-calculator" />
     </div>
   );
 }

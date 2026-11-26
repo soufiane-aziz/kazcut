@@ -3,9 +3,12 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import FreelanceCalculator from '@/components/calculators/FreelanceCalculator';
 import AdSenseSlot from '@/components/AdSenseSlot';
+import CalculatorLinksBar from '@/components/CalculatorLinksBar';
+import FeeCheatSheet from '@/components/FeeCheatSheet';
+import RelatedCalculatorsGrid from '@/components/RelatedCalculatorsGrid';
 
 export const metadata: Metadata = {
-  title: 'Freelance Hourly Rate Calculator (Take-Home Income & Tax Formula)',
+  title: 'Freelance Hourly Rate Calculator (2026 Tax Guide)',
   description:
     'Calculate the exact billable hourly rate required to hit your target take-home salary after self-employment taxes, business expenses, and unbillable hours.',
   alternates: {
@@ -82,24 +85,15 @@ export default function FreelanceRatePage() {
           Determine the billable hourly and day rate required to reach your net income target after self-employment taxes, business overhead, and unbillable administrative time.
         </p>
 
-        <div className="mt-4 flex flex-wrap items-center gap-2 text-xs">
-          <span className="font-medium text-[#6E5D54]">Role Profiles:</span>
-          <Link
-            href="/freelance-hourly-rate-calculator/for-software-engineers"
-            className="rounded border border-[#EFEAD8] bg-white px-2.5 py-1 text-[#2C221E] hover:border-[#C58842]"
-          >
-            Software Engineers
-          </Link>
-          <Link
-            href="/freelance-hourly-rate-calculator/for-designers"
-            className="rounded border border-[#EFEAD8] bg-white px-2.5 py-1 text-[#2C221E] hover:border-[#C58842]"
-          >
-            UI/UX Designers
-          </Link>
-        </div>
+        <CalculatorLinksBar
+          calculatorSlug="freelance-hourly-rate-calculator"
+          label="Role Profiles:"
+        />
       </div>
 
       <FreelanceCalculator />
+
+      <FeeCheatSheet calculatorSlug="freelance-hourly-rate-calculator" />
 
       <div className="mt-12">
         <AdSenseSlot slotId="freelance-bottom-banner" format="horizontal" minHeight={90} />
@@ -132,6 +126,8 @@ export default function FreelanceRatePage() {
           </div>
         </div>
       </section>
+
+      <RelatedCalculatorsGrid currentSlug="freelance-hourly-rate-calculator" />
     </div>
   );
 }

@@ -538,7 +538,7 @@ export const PROGRAMMATIC_PAGES: Record<string, ProgrammaticPageConfig> = {
     calculatorSlug: 'paypal-fee-calculator',
     subSlug: 'friends-and-family-vs-goods-and-services',
     title: 'PayPal Friends & Family vs Goods & Services Fee Calculator',
-    metaTitle: 'PayPal Friends and Family vs Goods and Services Fees (2026) | Kazcut',
+    metaTitle: 'PayPal Friends & Family vs Goods & Services Fee | Kazcut',
     metaDescription: 'Compare PayPal Friends and Family (0% domestic bank) vs Goods and Services (2.99% + $0.49). Calculate exact deductions and buyer protection fees.',
     h1: 'PayPal Fees: Friends & Family vs. Goods & Services',
     description: 'Detailed comparison of personal Friends & Family transfers versus commercial Goods & Services transactions. Calculate fees, purchase protection costs, and merchant deductions.',
@@ -749,7 +749,7 @@ export const PROGRAMMATIC_PAGES: Record<string, ProgrammaticPageConfig> = {
     calculatorSlug: 'shopify-profit-calculator',
     subSlug: 'break-even-cac',
     title: 'Shopify Break-Even CAC Calculator',
-    metaTitle: 'Shopify Break-Even CAC Calculator (Customer Acquisition Cost) | Kazcut',
+    metaTitle: 'Shopify Break-Even CAC Calculator (2026) | Kazcut',
     metaDescription: 'Calculate your exact Break-Even Customer Acquisition Cost (CAC) for Shopify ads. Determine the maximum ad spend allowed before losing money per order.',
     h1: 'Shopify Break-Even CAC (Customer Acquisition Cost) Calculator',
     description: 'Determine the exact advertising acquisition cost threshold for Facebook, TikTok, and Google Ads campaigns on your Shopify store before order profitability turns negative.',
@@ -826,4 +826,43 @@ export const ALL_CALCULATORS = [
     category: 'Freelancing',
   },
 ];
+
+export interface ProgrammaticGuideLink {
+  href: string;
+  config: ProgrammaticPageConfig;
+}
+
+export function getSubPagesForCalculator(calculatorSlug: string): ProgrammaticGuideLink[] {
+  return Object.entries(PROGRAMMATIC_PAGES)
+    .filter(([, config]) => config.calculatorSlug === calculatorSlug)
+    .map(([key, config]) => ({
+      href: `/${key}`,
+      config,
+    }));
+}
+
+export const FEATURED_GUIDE_KEYS: string[] = [
+  'paypal-fee-calculator/friends-and-family-vs-goods-and-services',
+  'paypal-fee-calculator/invoicing-rates',
+  'paypal-fee-calculator/in-usa',
+  'paypal-fee-calculator/in-uk',
+  'stripe-fee-calculator/international-cards',
+  'stripe-fee-calculator/dispute-and-chargeback-fees',
+  'etsy-fee-calculator/offsite-ads-fee',
+  'etsy-fee-calculator/for-digital-products',
+  'amazon-fba-calculator/storage-fees',
+  'amazon-fba-calculator/in-usa',
+  'shopify-profit-calculator/break-even-cac',
+  'shopify-profit-calculator/for-dropshipping',
+];
+
+export function getFeaturedGuides(): ProgrammaticGuideLink[] {
+  return FEATURED_GUIDE_KEYS
+    .filter((key) => Boolean(PROGRAMMATIC_PAGES[key]))
+    .map((key) => ({
+      href: `/${key}`,
+      config: PROGRAMMATIC_PAGES[key],
+    }));
+}
+
 

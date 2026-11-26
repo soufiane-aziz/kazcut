@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import AdSenseSlot from '@/components/AdSenseSlot';
 import ScrollReveal from '@/components/ScrollReveal';
-import { ALL_CALCULATORS } from '@/lib/geoData';
+import { ALL_CALCULATORS, getFeaturedGuides } from '@/lib/geoData';
 
 export const metadata: Metadata = {
   alternates: {
@@ -68,6 +68,8 @@ export default function HomePage() {
       },
     ],
   };
+
+  const featuredGuides = getFeaturedGuides();
 
   const comparisonRows = [
     {
@@ -252,15 +254,57 @@ export default function HomePage() {
         </section>
       </ScrollReveal>
 
-      {/* Brand Entity & Knowledge Center (SEO Dominance for 'Kazcut') */}
+      {/* Specialized Fee & Profit Guides (Internal Linking for Long-Tail Rankings) */}
+      <ScrollReveal delayMs={165}>
+        <section className="mt-14 rounded-xl border border-[#E7DFCC] bg-white p-6 box-card">
+          <div className="flex flex-col gap-1 border-b border-[#EFEAD8] pb-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h2 className="text-sm font-semibold uppercase tracking-wider text-[#2C221E]">
+                Specialized Fee &amp; Profit Guides (2026)
+              </h2>
+              <p className="mt-1 text-xs text-[#6E5D54]">
+                Jump directly to country-specific rate schedules, cross-border card calculators, and break-even models.
+              </p>
+            </div>
+            <Link
+              href="/about"
+              className="text-xs font-medium text-[#C58842] hover:underline"
+            >
+              View 2026 Methodology →
+            </Link>
+          </div>
+
+          <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredGuides.map(({ href, config }) => (
+              <Link
+                key={href}
+                href={href}
+                className="group flex items-start justify-between gap-3 rounded-lg border border-[#EFEAD8] bg-[#FDFBF7] p-3.5 transition hover:border-[#C58842] hover:bg-[#FAF5EE]"
+              >
+                <div>
+                  <h3 className="text-xs font-semibold text-[#2C221E] group-hover:text-[#C58842] transition">
+                    {config.title}
+                  </h3>
+                  <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-[#6E5D54]">
+                    {config.description}
+                  </p>
+                </div>
+                <ArrowUpRight className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#9B8C83] transition group-hover:text-[#C58842]" />
+              </Link>
+            ))}
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* Brand Entity & Knowledge Center */}
       <ScrollReveal delayMs={175}>
         <section className="mt-14 rounded-xl border border-[#E7DFCC] bg-white p-6 sm:p-8 box-card">
           <div className="border-b border-[#EFEAD8] pb-4">
             <span className="text-[10px] font-semibold uppercase tracking-wider text-[#C58842]">
-              Official Platform Knowledge
+              Platform Knowledge
             </span>
             <h2 className="mt-1 text-xl font-bold text-[#2C221E] sm:text-2xl">
-              About Kazcut™ Financial Platform
+              About Kazcut Financial Platform
             </h2>
             <p className="mt-1 text-xs text-[#6E5D54]">
               High-precision digital commerce calculation tools engineered for sellers, founders, and independent contractors worldwide.

@@ -3,9 +3,12 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import ShopifyCalculator from '@/components/calculators/ShopifyCalculator';
 import AdSenseSlot from '@/components/AdSenseSlot';
+import CalculatorLinksBar from '@/components/CalculatorLinksBar';
+import FeeCheatSheet from '@/components/FeeCheatSheet';
+import RelatedCalculatorsGrid from '@/components/RelatedCalculatorsGrid';
 
 export const metadata: Metadata = {
-  title: 'Shopify Profit Margin & Fee Calculator (2026 Unit Economics)',
+  title: 'Shopify Profit Margin & Fee Calculator (2026)',
   description:
     'Free Shopify profit margin calculator. Factor in COGS, ad spend CAC, fulfillment, and payment gateway fees to calculate net transaction profit.',
   alternates: {
@@ -82,24 +85,15 @@ export default function ShopifyProfitPage() {
           Analyze unit economics for direct-to-consumer and dropshipping stores. Account for product manufacturing, shipping postage, paid advertising CAC, and Shopify Payments transaction rates.
         </p>
 
-        <div className="mt-4 flex flex-wrap items-center gap-2 text-xs">
-          <span className="font-medium text-[#6E5D54]">Store Models:</span>
-          <Link
-            href="/shopify-profit-calculator/for-dropshipping"
-            className="rounded border border-[#EFEAD8] bg-white px-2.5 py-1 text-[#2C221E] hover:border-[#C58842]"
-          >
-            Dropshipping Store
-          </Link>
-          <Link
-            href="/shopify-profit-calculator/for-dtc-brands"
-            className="rounded border border-[#EFEAD8] bg-white px-2.5 py-1 text-[#2C221E] hover:border-[#C58842]"
-          >
-            DTC Retail Brand
-          </Link>
-        </div>
+        <CalculatorLinksBar
+          calculatorSlug="shopify-profit-calculator"
+          label="Store &amp; CAC Guides:"
+        />
       </div>
 
       <ShopifyCalculator />
+
+      <FeeCheatSheet calculatorSlug="shopify-profit-calculator" />
 
       <div className="mt-12">
         <AdSenseSlot slotId="shopify-bottom-banner" format="horizontal" minHeight={90} />
@@ -132,6 +126,8 @@ export default function ShopifyProfitPage() {
           </div>
         </div>
       </section>
+
+      <RelatedCalculatorsGrid currentSlug="shopify-profit-calculator" />
     </div>
   );
 }

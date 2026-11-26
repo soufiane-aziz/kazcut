@@ -5,6 +5,9 @@ import Link from 'next/link';
 import { PROGRAMMATIC_PAGES } from '@/lib/geoData';
 import { getSiteUrl } from '@/lib/siteUrl';
 import AdSenseSlot from '@/components/AdSenseSlot';
+import CalculatorLinksBar from '@/components/CalculatorLinksBar';
+import FeeCheatSheet from '@/components/FeeCheatSheet';
+import RelatedCalculatorsGrid from '@/components/RelatedCalculatorsGrid';
 import PaypalCalculator from '@/components/calculators/PaypalCalculator';
 import StripeCalculator from '@/components/calculators/StripeCalculator';
 import EtsyCalculator from '@/components/calculators/EtsyCalculator';
@@ -43,7 +46,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const baseUrl = getSiteUrl();
 
   return {
-    title: config.metaTitle,
+    title: {
+      absolute: config.metaTitle,
+    },
     description: config.metaDescription,
     alternates: {
       canonical: `${baseUrl}/${calculator}/${slug}`,
@@ -238,10 +243,20 @@ export default async function ProgrammaticPage({ params }: PageProps) {
             ))}
           </div>
         )}
+
+        {/* Sibling & Regional Cross-Links */}
+        <CalculatorLinksBar
+          calculatorSlug={calculator}
+          currentSubSlug={slug}
+          label="All Guides:"
+        />
       </div>
 
       {/* Render Calculator */}
       {renderCalculatorEngine()}
+
+      {/* Pre-Computed HTML Reference Table */}
+      <FeeCheatSheet calculatorSlug={calculator} config={config} />
 
       {/* Below Action AdSense Slot */}
       <div className="mt-12">
@@ -268,6 +283,9 @@ export default async function ProgrammaticPage({ params }: PageProps) {
           </div>
         </section>
       )}
+
+      {/* Cross-links to other Kazcut calculators */}
+      <RelatedCalculatorsGrid currentSlug={calculator} />
     </div>
   );
 }

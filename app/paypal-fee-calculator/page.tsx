@@ -3,9 +3,12 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import PaypalCalculator from '@/components/calculators/PaypalCalculator';
 import AdSenseSlot from '@/components/AdSenseSlot';
+import CalculatorLinksBar from '@/components/CalculatorLinksBar';
+import FeeCheatSheet from '@/components/FeeCheatSheet';
+import RelatedCalculatorsGrid from '@/components/RelatedCalculatorsGrid';
 
 export const metadata: Metadata = {
-  title: 'PayPal Fee Calculator (2026 Merchant & Invoicing Rates)',
+  title: 'PayPal Fee Calculator 2026 — Merchant & Invoice',
   description:
     'Free PayPal fee calculator for domestic, international, and invoice transactions. Calculate net payout or the exact amount to invoice to net your target.',
   alternates: {
@@ -94,38 +97,18 @@ export default function PaypalFeePage() {
           Calculate PayPal seller fees, invoicing deductions, and net bank deposits. Use reverse mode to calculate the exact invoice total required to net your target amount.
         </p>
 
-        {/* Regional Schedules Links */}
-        <div className="mt-4 flex flex-wrap items-center gap-2 text-xs">
-          <span className="font-medium text-[#6E5D54]">Regional Rates:</span>
-          <Link
-            href="/paypal-fee-calculator/in-usa"
-            className="rounded border border-[#EFEAD8] bg-white px-2.5 py-1 text-[#2C221E] hover:border-[#C58842]"
-          >
-            United States (USD)
-          </Link>
-          <Link
-            href="/paypal-fee-calculator/in-uk"
-            className="rounded border border-[#EFEAD8] bg-white px-2.5 py-1 text-[#2C221E] hover:border-[#C58842]"
-          >
-            United Kingdom (GBP)
-          </Link>
-          <Link
-            href="/paypal-fee-calculator/in-canada"
-            className="rounded border border-[#EFEAD8] bg-white px-2.5 py-1 text-[#2C221E] hover:border-[#C58842]"
-          >
-            Canada (CAD)
-          </Link>
-          <Link
-            href="/paypal-fee-calculator/in-germany"
-            className="rounded border border-[#EFEAD8] bg-white px-2.5 py-1 text-[#2C221E] hover:border-[#C58842]"
-          >
-            Germany (EUR)
-          </Link>
-        </div>
+        {/* Regional & Specialized Guides */}
+        <CalculatorLinksBar
+          calculatorSlug="paypal-fee-calculator"
+          label="Regional &amp; Fee Guides:"
+        />
       </div>
 
       {/* Calculator Component */}
       <PaypalCalculator />
+
+      {/* Pre-Computed Reference Table */}
+      <FeeCheatSheet calculatorSlug="paypal-fee-calculator" />
 
       {/* Below Action AdSense Slot */}
       <div className="mt-12">
@@ -162,6 +145,8 @@ export default function PaypalFeePage() {
           </div>
         </div>
       </section>
+
+      <RelatedCalculatorsGrid currentSlug="paypal-fee-calculator" />
     </div>
   );
 }

@@ -3,9 +3,12 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import EtsyCalculator from '@/components/calculators/EtsyCalculator';
 import AdSenseSlot from '@/components/AdSenseSlot';
+import CalculatorLinksBar from '@/components/CalculatorLinksBar';
+import FeeCheatSheet from '@/components/FeeCheatSheet';
+import RelatedCalculatorsGrid from '@/components/RelatedCalculatorsGrid';
 
 export const metadata: Metadata = {
-  title: 'Etsy Seller Fee & Profit Calculator (2026 Listing & Transaction Rates)',
+  title: 'Etsy Fee & Profit Calculator (2026 Seller Rates)',
   description:
     'Free Etsy profit calculator. Factor in listing fees, 6.5% transaction fees, payment processing, offsite ads, and COGS to calculate true net margin.',
   alternates: {
@@ -90,24 +93,15 @@ export default function EtsyFeePage() {
           Calculate total Etsy seller fees, listing costs, payment processing, and net profit margins across physical handmade goods and digital downloads.
         </p>
 
-        <div className="mt-4 flex flex-wrap items-center gap-2 text-xs">
-          <span className="font-medium text-[#6E5D54]">Product Models:</span>
-          <Link
-            href="/etsy-fee-calculator/for-digital-products"
-            className="rounded border border-[#EFEAD8] bg-white px-2.5 py-1 text-[#2C221E] hover:border-[#C58842]"
-          >
-            Digital Downloads & SVGs
-          </Link>
-          <Link
-            href="/etsy-fee-calculator/for-handmade-items"
-            className="rounded border border-[#EFEAD8] bg-white px-2.5 py-1 text-[#2C221E] hover:border-[#C58842]"
-          >
-            Handmade & Physical Goods
-          </Link>
-        </div>
+        <CalculatorLinksBar
+          calculatorSlug="etsy-fee-calculator"
+          label="Product &amp; Fee Guides:"
+        />
       </div>
 
       <EtsyCalculator />
+
+      <FeeCheatSheet calculatorSlug="etsy-fee-calculator" />
 
       <div className="mt-12">
         <AdSenseSlot slotId="etsy-bottom-banner" format="horizontal" minHeight={90} />
@@ -140,6 +134,8 @@ export default function EtsyFeePage() {
           </div>
         </div>
       </section>
+
+      <RelatedCalculatorsGrid currentSlug="etsy-fee-calculator" />
     </div>
   );
 }

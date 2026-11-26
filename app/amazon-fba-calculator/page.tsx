@@ -3,9 +3,12 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import AmazonFbaCalculator from '@/components/calculators/AmazonFbaCalculator';
 import AdSenseSlot from '@/components/AdSenseSlot';
+import CalculatorLinksBar from '@/components/CalculatorLinksBar';
+import FeeCheatSheet from '@/components/FeeCheatSheet';
+import RelatedCalculatorsGrid from '@/components/RelatedCalculatorsGrid';
 
 export const metadata: Metadata = {
-  title: 'Amazon FBA Profit & Fee Calculator (2026 Fulfillment Rates)',
+  title: 'Amazon FBA Fee & Profit Calculator (2026 Rates)',
   description:
     'Free Amazon FBA calculator. Calculate referral fees, FBA fulfillment tier costs, storage fees, and unit net profit margin.',
   alternates: {
@@ -90,24 +93,15 @@ export default function AmazonFbaPage() {
           Determine unit economics, referral commissions, FBA pick and pack costs, and monthly net profitability for Amazon seller central merchants.
         </p>
 
-        <div className="mt-4 flex flex-wrap items-center gap-2 text-xs">
-          <span className="font-medium text-[#6E5D54]">Regional Marketplaces:</span>
-          <Link
-            href="/amazon-fba-calculator/in-usa"
-            className="rounded border border-[#EFEAD8] bg-white px-2.5 py-1 text-[#2C221E] hover:border-[#C58842]"
-          >
-            Amazon US (USD)
-          </Link>
-          <Link
-            href="/amazon-fba-calculator/in-germany"
-            className="rounded border border-[#EFEAD8] bg-white px-2.5 py-1 text-[#2C221E] hover:border-[#C58842]"
-          >
-            Amazon Germany / Pan-EU (EUR)
-          </Link>
-        </div>
+        <CalculatorLinksBar
+          calculatorSlug="amazon-fba-calculator"
+          label="Marketplaces &amp; Storage:"
+        />
       </div>
 
       <AmazonFbaCalculator />
+
+      <FeeCheatSheet calculatorSlug="amazon-fba-calculator" />
 
       <div className="mt-12">
         <AdSenseSlot slotId="amazon-bottom-banner" format="horizontal" minHeight={90} />
@@ -140,6 +134,8 @@ export default function AmazonFbaPage() {
           </div>
         </div>
       </section>
+
+      <RelatedCalculatorsGrid currentSlug="amazon-fba-calculator" />
     </div>
   );
 }
