@@ -1,9 +1,16 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import AdSenseSlot from '@/components/AdSenseSlot';
 import ScrollReveal from '@/components/ScrollReveal';
 import { ALL_CALCULATORS } from '@/lib/geoData';
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/',
+  },
+};
 
 export default function HomePage() {
   const jsonLd = {

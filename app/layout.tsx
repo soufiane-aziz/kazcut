@@ -14,11 +14,11 @@ const siteUrl = getSiteUrl();
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Kazcut™ Official: Free E-Commerce & Freelancer Profit/Fee Calculator (2026)',
+    default: 'Free PayPal, Stripe & Etsy Fee Calculator (2026) | Kazcut',
     template: '%s | Kazcut',
   },
   description:
-    'Kazcut is the precision fee & profit calculator for PayPal, Stripe, Etsy, Amazon FBA, Shopify, and freelancers. 100% free, updated for 2026 rates, with instant PDF summary exports.',
+    'Free fee & profit calculator for PayPal, Stripe, Etsy, Amazon FBA, Shopify, and freelancers. Updated for 2026 rates with reverse-fee math and PDF exports.',
   keywords: [
     // Brand & Variations
     'Kazcut',
@@ -193,7 +193,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: siteUrl,
     siteName: 'Kazcut',
-    title: 'Kazcut™ Official — Free E-Commerce & Freelancer Profit/Fee Calculator',
+    title: 'Free PayPal, Stripe & Etsy Fee Calculator (2026) | Kazcut',
     description:
       'High-precision financial calculators for PayPal, Stripe, Etsy, Amazon FBA, Shopify, and freelancers. Reverse net logic & instant PDF exports.',
     images: [
@@ -201,13 +201,13 @@ export const metadata: Metadata = {
         url: `${siteUrl}/icon-512.png`,
         width: 512,
         height: 512,
-        alt: 'Kazcut Official Logo',
+        alt: 'Kazcut Logo',
       },
     ],
   },
   twitter: {
     card: 'summary',
-    title: 'Kazcut™ Official — E-Commerce & Freelancer Profit/Fee Calculator',
+    title: 'Free PayPal, Stripe & Etsy Fee Calculator (2026) | Kazcut',
     description:
       'Calculate exact platform fees, take-home net profit, and break-even thresholds across major commerce platforms.',
     images: [`${siteUrl}/icon-512.png`],
@@ -279,13 +279,6 @@ export default function RootLayout({
           '@type': 'Offer',
           price: '0.00',
           priceCurrency: 'USD',
-        },
-        aggregateRating: {
-          '@type': 'AggregateRating',
-          ratingValue: '4.9',
-          ratingCount: '2480',
-          bestRating: '5',
-          worstRating: '1',
         },
       },
     ],
