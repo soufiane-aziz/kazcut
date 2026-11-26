@@ -219,8 +219,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const adsensePublisherId = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID;
-  const googleTagId = process.env.NEXT_PUBLIC_GOOGLE_TAG_ID;
+  const rawAdsenseId = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID?.trim();
+  const rawGoogleTagId = process.env.NEXT_PUBLIC_GOOGLE_TAG_ID?.trim();
+  const adsensePublisherId =
+    rawAdsenseId && /^ca-pub-\d{10,20}$/.test(rawAdsenseId) ? rawAdsenseId : undefined;
+  const googleTagId =
+    rawGoogleTagId && /^(G|AW|GT|DC)-[A-Z0-9]+$/.test(rawGoogleTagId) ? rawGoogleTagId : undefined;
 
   // Global Brand & WebSite Structured JSON-LD for Google Rich Results
   const globalSchema = {
@@ -323,7 +327,7 @@ export default function RootLayout({
                   window.dataLayer = window.dataLayer || [];
                   function gtag(){dataLayer.push(arguments);}
                   gtag('js', new Date());
-                  gtag('config', '${googleTagId}', {
+                  gtag('config', ${JSON.stringify(googleTagId)}, {
                     page_path: window.location.pathname,
                   });
                 `,

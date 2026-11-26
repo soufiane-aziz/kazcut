@@ -28,14 +28,17 @@ ON public.saved_calculations
 FOR SELECT 
 USING (true);
 
--- Allow anonymous creation of saved calculations
+-- Allow anonymous creation of saved calculations with payload size bounds (0 PII)
 CREATE POLICY "Allow public insert of saved calculations" 
 ON public.saved_calculations
 FOR INSERT 
 WITH CHECK (
-    char_length(share_id) >= 6 AND
-    char_length(title) <= 120 AND
-    calculator_type IN ('paypal', 'stripe', 'etsy', 'amazon', 'shopify', 'freelance')
+    char_length(share_id) BETWEEN 6 AND 64 AND
+    char_length(title) BETWEEN 1 AND 120 AND
+    char_length(currency) BETWEEN 3 AND 10 AND
+    calculator_type IN ('paypal', 'stripe', 'etsy', 'amazon', 'shopify', 'freelance') AND
+    pg_column_size(inputs) <= 16384 AND
+    pg_column_size(results) <= 16384
 );
 
 -- 2. Create table for anonymous aggregate usage analytics (0 PII, strict compliance)
@@ -53,11 +56,15 @@ CREATE INDEX IF NOT EXISTS idx_calculator_analytics_type_date ON public.calculat
 -- Enable RLS
 ALTER TABLE public.calculator_analytics ENABLE ROW LEVEL SECURITY;
 
--- Allow anonymous insert for analytics logging
+-- Allow anonymous insert for aggregate analytics logging with bounded field lengths
 CREATE POLICY "Allow public insert of analytics" 
 ON public.calculator_analytics
 FOR INSERT 
-WITH CHECK (true);
+WITH CHECK (
+    char_length(calculator_type) BETWEEN 1 AND 32 AND
+    char_length(event_action) BETWEEN 1 AND 50 AND
+    char_length(country_code) BETWEEN 2 AND 10
+);
 
 -- Restrict SELECT on analytics to service role only
 CREATE POLICY "Restrict analytics reads to service role" 

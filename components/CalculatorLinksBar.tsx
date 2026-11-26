@@ -42,11 +42,10 @@ export default function CalculatorLinksBar({
             key={href}
             href={href}
             aria-current={isActive ? 'page' : undefined}
-            className={`rounded border px-2.5 py-1 transition ${
-              isActive
+            className={`rounded border px-2.5 py-1 transition ${isActive
                 ? 'border-[#C58842] bg-[#FAF5EE] font-semibold text-[#2C221E]'
                 : 'border-[#EFEAD8] bg-white text-[#2C221E] hover:border-[#C58842]'
-            }`}
+              }`}
           >
             {config.title}
           </Link>

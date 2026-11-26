@@ -398,13 +398,12 @@ export default function FeeCheatSheet({ calculatorSlug, config }: FeeCheatSheetP
                 {row.map((cell, cellIdx) => (
                   <td
                     key={cellIdx}
-                    className={`px-4 py-2.5 ${
-                      cellIdx === 0
+                    className={`px-4 py-2.5 ${cellIdx === 0
                         ? 'font-semibold text-[#2C221E]'
                         : cellIdx === row.length - 1
                           ? 'text-right font-semibold text-[#C58842]'
                           : 'text-[#6E5D54]'
-                    }`}
+                      }`}
                   >
                     {cell}
                   </td>

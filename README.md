@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kazcut — Free E-Commerce & Freelancer Fee / Profit Calculators (2026)
 
-## Getting Started
+Live app: **[https://kazcut.vercel.app](https://kazcut.vercel.app)**
 
-First, run the development server:
+Kazcut is an open-source, 100% client-side financial calculator suite built with Next.js, TypeScript, and Tailwind CSS. It helps merchants, marketplace sellers, and freelancers calculate exact transaction deductions, net take-home payouts, break-even ad spend (CAC), and reverse-invoice totals without signups or server-side data storage.
+
+## Included Calculators
+
+- **[PayPal Fee Calculator](https://kazcut.vercel.app/paypal-fee-calculator)** — Standard commercial (`2.99% + $0.49`), invoicing (`3.49% + $0.49`), international cross-border fees, Friends & Family vs. Goods & Services, and reverse-invoice math.
+- **[Stripe Fee Calculator](https://kazcut.vercel.app/stripe-fee-calculator)** — Domestic card processing (`2.9% + $0.30`), international card markups (`+1.5%`), currency conversion (`+1.0%`), and chargeback dispute modeling.
+- **[Etsy Seller Fee Calculator](https://kazcut.vercel.app/etsy-fee-calculator)** — `$0.20` listing fee, `6.5%` transaction fee on item + shipping, Etsy Payments processing, and `12%` / `15%` Offsite Ads fee modeling.
+- **[Amazon FBA Calculator](https://kazcut.vercel.app/amazon-fba-calculator)** — Category referral commissions, size-tier fulfillment fees, landed shipping COGS, and off-peak vs. Q4 storage costs.
+- **[Shopify Profit Margin Calculator](https://kazcut.vercel.app/shopify-profit-calculator)** — Plan-tiered Shopify Payments fees (`2.5%`–`2.9% + $0.30`), fulfillment costs, and Break-Even Customer Acquisition Cost (CAC).
+- **[Freelance Hourly Rate Calculator](https://kazcut.vercel.app/freelance-hourly-rate-calculator)** — Tax-adjusted annual revenue targets, billable vs. non-billable time, overhead expenses, and day-rate conversion.
+
+## Key Features
+
+- **Two-Way Reverse Inversion:** Compute exact gross amounts to bill clients in order to net your exact target payout after fees.
+- **Pre-Computed HTML Fee Reference Tables:** Fast-reference payout and fee tables across currencies (`USD`, `GBP`, `EUR`, `CAD`, `AUD`, `JPY`).
+- **Privacy-First Client Execution:** Calculations run in-browser; no user financial numbers are stored on servers unless explicitly saved via optional template sharing.
+- **Instant PDF Summary Export:** Client-side PDF breakdown generation via `jsPDF`.
+
+## Local Development
 
 ```bash
+cp .env.example .env.local
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+See [`.env.example`](.env.example) for optional public configuration (`NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `NEXT_PUBLIC_ADSENSE_PUBLISHER_ID`). Never commit `.env.local` or secret keys.
 
-## Learn More
+## License & Security
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Security reporting instructions: [`SECURITY.md`](SECURITY.md)
+- Methodology & financial estimation disclaimer: [About](https://kazcut.vercel.app/about) · [Terms](https://kazcut.vercel.app/terms)
